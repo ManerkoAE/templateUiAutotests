@@ -1,0 +1,38 @@
+  //   Находим ВСЕ кнопки на странице
+//        List<WebElement> allButtons = driver.findElements(By.tagName("button"));
+//        System.out.println("\n🔘 Найдено кнопок: " + allButtons.size());
+        }
+
+//        //   Выводим информацию о каждой кнопке
+//        for (int i = 0; i < allButtons.size(); i++) {
+//            WebElement button = allButtons.get(i);
+//            System.out.println("\n--- Кнопка " + (i + 1) + " ---");
+//            System.out.println("Текст: '" + button.getText() + "'");
+//            System.out.println("Title: '" + button.getAttribute("title") + "'");
+//            System.out.println("ID: '" + button.getAttribute("id") + "'");
+//            System.out.println("Class: '" + button.getAttribute("class") + "'");
+//            System.out.println("data-testid: '" + button.getAttribute("data-testid") + "'");
+//            System.out.println("type: '" + button.getAttribute("type") + "'");
+//        }
+//
+//        //   Находим ВСЕ элементы с data-testid
+//        List<WebElement> testIdElements = driver.findElements(By.cssSelector("[data-testid]"));
+//        System.out.println("\n🏷️ Найдено элементов с data-testid: " + testIdElements.size());
+//
+//        for (WebElement el : testIdElements) {
+//            System.out.println("  data-testid: '" + el.getAttribute("data-testid") + "'");
+//            System.out.println("  Текст: '" + el.getText() + "'");
+//            System.out.println("  Тег: '" + el.getTagName() + "'");
+//            System.out.println("  ---");
+//        }
+//
+//        System.out.println("\n✅ Исследование страницы завершено!");
+
+        // Пример проверки:
+        // assertTrue(driver.getCurrentUrl().contains("/loans"));
+        // assertTrue(driver.findElement(By.tagName("h1")).getText().contains("Кредиты"));
+        // Смотрим свои карты
+        //    WebElement CheckCards = driver.findElement(By.xpath("//button[@data-testid='toggle-card-details']"));
+//        driver.findElement(By.xpath("//button[@data-testid='toggle-card-details']")).click();
+        //driver.findElement(By.xpath("//button[@data-testid='toggle-card-details']")).click();
+//       // CheckCards.click();
