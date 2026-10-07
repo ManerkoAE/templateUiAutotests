@@ -1,12 +1,9 @@
-package common.common;
+package config;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-/**
- * Загрузчик конфигурации для тестов
- */
 public class ConfigLoader {
 
     private static final Properties properties = new Properties();
@@ -19,9 +16,9 @@ public class ConfigLoader {
                 throw new RuntimeException(
                         "❌ Файл config.properties не найден в папке src/test/resources/\n" +
                                 "Создай файл со следующими параметрами:\n" +
-                                "login=login\n" +
-                                "password=password\n" +
-                                "baseBankurl=https://demoqa.ru/bank"
+                                "BankLogin=login\n" +
+                                "BankPassword=password\n" +
+                                "BaseBankUrl=https://demoqa.ru/bank"
                 );
             }
 
@@ -62,5 +59,17 @@ public class ConfigLoader {
         } catch (NumberFormatException e) {
             throw new RuntimeException("❌ Свойство '" + key + "' должно быть числом, но получено: " + value);
         }
+    }
+
+    public static boolean getBoolean(String key, boolean defaultValue) {
+        String systemValue = System.getProperty(key);
+        if (systemValue != null) {
+            return Boolean.parseBoolean(systemValue.trim());
+        }
+        String fileValue = properties.getProperty(key);
+        if (fileValue != null) {
+            return Boolean.parseBoolean(fileValue.trim());
+        }
+        return defaultValue;
     }
 }
