@@ -1,13 +1,18 @@
-package common.core;
+package tests;
 
+import common.core.DriverFactory;
+import common.core.Listener;
 import common.pages.bank.BankLoansPage;
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import common.pages.BasePage;
+import org.openqa.selenium.WebDriverException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.time.LocalDateTime;
 
@@ -17,7 +22,7 @@ import static config.Config.*;
 @TestInstance(TestInstance.Lifecycle.PER_METHOD)
 public abstract class BaseTest {
 
-    protected WebDriver driver;
+    public WebDriver driver;
     protected BasePage basePage;
     protected BankLoansPage bankLoansPage;
     public static final Logger LOGGER = LoggerFactory.getLogger(BaseTest.class);
@@ -33,13 +38,9 @@ public abstract class BaseTest {
     public static void clearReports() {
         LOGGER.info("START TIME:" + LocalDateTime.now());
         LOGGER.info("Start clear reports dir: target/allure-results");
-
         deleteDirContents("allure-results");
-        deleteDirContents("target/allure-results");
-        if (CLEAR_REPORT_DIR) {
-            deleteDirContents("target/surefire-reports");
-        }
     }
+
     private static void deleteDirContents(String path) {
         File dir = new File(path);
         if (!dir.isDirectory()) {
@@ -52,14 +53,15 @@ public abstract class BaseTest {
             item.delete();
         }
     }
+
     @AfterEach
-    void clearCookiesAndLocalStorage() {
+    void clearCookiesAndSessionStorage() {
         if (CLEAR_COOKIES && driver != null) {
             try {
                 JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
                 driver.manage().deleteAllCookies();
                 javascriptExecutor.executeScript("window.sessionStorage.clear()");
-            } catch (Exception e) {
+            } catch (WebDriverException wde) {
             }
         }
     }

@@ -1,11 +1,9 @@
 package tests.cards;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import common.core.BaseAuthTest;
-
+import tests.BaseAuthTest;
 import static config.Constant.Urls.BANK_LOANS_URL;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ShowCardsPositiveTest extends BaseAuthTest {
 
@@ -24,10 +22,7 @@ public class ShowCardsPositiveTest extends BaseAuthTest {
 
         bankLoansPage.enterOtpCode(expectedCode);
         String actualCode = bankLoansPage.getOtpInputValue();
-
-        Assertions.assertEquals(expectedCode, actualCode,
-                "Код подтверждения введён корректно");
-
+        assertThat(expectedCode).as("Код подтверждения введён корректно").isEqualTo(actualCode);
         bankLoansPage.submitOtp();
         bankLoansPage.waitUntilOtpFieldDisappears();
         LOGGER.info("Код подтвержден");

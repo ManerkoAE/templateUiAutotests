@@ -4,10 +4,8 @@ import config.ConfigLoader;
 import common.pages.BankPage;
 import common.pages.LoginPage;
 import org.junit.jupiter.api.Test;
-import common.core.BaseTest;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import tests.BaseTest;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LoginPositiveTest extends BaseTest {
 
@@ -23,7 +21,8 @@ public class LoginPositiveTest extends BaseTest {
         loginPage.waitForUrlContains("/bank");
 
         BankPage bankPage = new BankPage(driver);
-        assertTrue(bankPage.isUserLoggedIn(),
-                "Пользователь должен быть авторизован после ввода валидных данных");
+        assertThat(bankPage.isUserLoggedIn()).
+                as("Пользователь должен быть авторизован после ввода валидных данных").
+                isTrue();
     }
 }

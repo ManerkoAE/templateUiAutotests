@@ -1,5 +1,6 @@
 package common.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -23,6 +24,7 @@ public class BasePage {
         driver.get(url);
     }
 
+    @Step("Получить актуальную страницу сайта")
     public String getCurrentUrl() {
         return driver.getCurrentUrl();
     }
@@ -31,15 +33,16 @@ public class BasePage {
         return new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAIT))
                 .until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
+    @Step("Ждать появления нужного URL")
     public void waitForUrlContains(String urlPart) {
         new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAIT))
                 .until(ExpectedConditions.urlContains(urlPart));
     }
-
+    @Step("Проверка наличия элемента")
     public boolean isElementPresent(By locator) {
         return !driver.findElements(locator).isEmpty();
     }
-
+    @Step("Проверка видимости элемента")
     public boolean isElementVisible(By locator) {
         try {
             return waitElementIsVisible(locator).isDisplayed();

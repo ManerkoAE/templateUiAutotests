@@ -1,5 +1,7 @@
 package config;
 
+import io.qameta.allure.Step;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -30,9 +32,7 @@ public class ConfigLoader {
         }
     }
 
-    /**
-     * Получить значение свойства
-     */
+    @Step("Получить значение свойства")
     public static String get(String key) {
         String value = properties.getProperty(key);
         if (value == null) {
@@ -41,17 +41,14 @@ public class ConfigLoader {
         return value;
     }
 
-    /**
-     * Получить значение свойства со значением по умолчанию
-     */
+
+    @Step("Получить значение свойства со значением по умолчанию")
     public static String get(String key, String defaultValue) {
         String value = properties.getProperty(key);
         return value != null ? value : defaultValue;
     }
 
-    /**
-     * Получить целочисленное значение свойства
-     */
+    @Step("Получить целочисленное значение свойства")
     public static int getInt(String key) {
         String value = get(key);
         try {

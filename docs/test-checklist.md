@@ -22,3 +22,12 @@
 4.3) Работа с БД ( PosgreSQL)
 
 Далее дополнить проект на селениде
+
+Топ библиотек для изучения
+1) сам тестовый фрем JUnit5
+2) Для UI: Selenium Selenide  Playwrite
+3) Для REST Rest Assured
+4) Вспомогательные но полезные: Owner AssertJ Lombok.  это прям база
+5) для базы Spring JDBS\ Hybernate
+6) еще Jackson вспоомогательная
+7) Для заглушек - Mockhito

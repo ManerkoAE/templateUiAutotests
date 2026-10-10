@@ -1,4 +1,4 @@
-package common.core;
+package tests;
 
 import config.ConfigLoader;
 import common.pages.LoginPage;

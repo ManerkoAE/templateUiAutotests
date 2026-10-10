@@ -3,10 +3,9 @@ package tests.Login;
 import config.ConfigLoader;
 import common.pages.LoginPage;
 import org.junit.jupiter.api.Test;
-import common.core.BaseTest;
-
+import tests.BaseTest;
 import static config.Constant.ExpectedMessages.WRONG_CREDENTIALS_ERROR;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LoginNegativeTest extends BaseTest {
 
@@ -19,8 +18,8 @@ public class LoginNegativeTest extends BaseTest {
         LoginPage loginPage = new LoginPage(driver);
         driver.get(baseUrl + "/login");
         loginPage.loginAs(wrongLogin, wrongPassword);
+assertThat(loginPage.getErrorText()).as("Должно быть сообщение об ошибке").
+        isEqualTo(WRONG_CREDENTIALS_ERROR);
 
-        assertEquals(WRONG_CREDENTIALS_ERROR, loginPage.getErrorText(),
-                "Должно быть сообщение об ошибке");
     }
 }

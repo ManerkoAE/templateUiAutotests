@@ -1,5 +1,6 @@
 package common.pages.bank;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import common.pages.BasePage;
@@ -26,31 +27,37 @@ public class BankLoansPage extends BasePage {
 
     public BankLoansPage checkLoginErrorIsPresent(String text) {
         WebElement errorMsg = waitElementIsVisible(loginError);
-      //  Assertions.assertEquals(text, errorMsg.getText());
         return this;
     }
+
+    @Step("нажать кнопку Подробной информации о картах")
     public void clickShowCardDetails() {
         waitElementIsVisible(toggleCardDetails).click();
     }
 
+    @Step("Получить проверочный код")
     public String getOtpCode() {
         return waitElementIsVisible(otpCode).getText();
     }
 
+    @Step("Скопировать проверочный код")
     public void clickCopyCode() {
         waitElementIsVisible(copyCodeButton).click();
     }
 
+    @Step("Ввести проверочный код")
     public void enterOtpCode(String code) {
         WebElement input = waitElementIsVisible(otpInput);
         input.clear();
         input.sendKeys(code);
     }
 
+    @Step("Активировать поле для ввода проверочного кода")
     public String getOtpInputValue() {
         return driver.findElement(otpInput).getAttribute("value");
     }
 
+    @Step("Подтвердить проверочный код")
     public void submitOtp() {
         waitElementIsVisible(otpSubmit).click();
     }
@@ -60,10 +67,7 @@ public class BankLoansPage extends BasePage {
                 .until(ExpectedConditions.invisibilityOfElementLocated(otpSubmit));
     }
 
-    public By getLoginError() {
-        return loginError;
-    }
-
+    @Step("Получить текст ошибки логина")
     public String getLoginErrorText() {
         return new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAIT))
                 .until(ExpectedConditions.visibilityOfElementLocated(loginError))
