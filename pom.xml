@@ -28,6 +28,9 @@
         <selenium.version>4.47.0</selenium.version>
         <logback.version>1.6.3</logback.version>
         <webdrivermanager.version>6.3.4</webdrivermanager.version>
+        <owner.version>1.0.12</owner.version>
+        <faker.version>2.7.0</faker.version>
+        <lombok.version>1.18.34</lombok.version>
     </properties>
 
     <build>
@@ -44,9 +47,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
-                <configuration>
-                    <release>21</release>
-                </configuration>
             </plugin>
 
             <!-- Плагин для запуска тестов -->
@@ -82,7 +82,22 @@
                     </dependency>
                 </dependencies>
             </plugin>
-
+            <!-- annotation processing для Lombok -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <release>21</release>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
             <!-- Плагин Allure для генерации отчёта -->
             <plugin>
                 <groupId>io.qameta.allure</groupId>
@@ -127,6 +142,29 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>${logback.version}</version>
+        </dependency>
+        <!-- Owner: конфигурация через интерфейсы -->
+        <dependency>
+            <groupId>org.aeonbits.owner</groupId>
+            <artifactId>owner</artifactId>
+            <version>${owner.version}</version>
+        </dependency>
+
+        <!-- Datafaker: генерация тестовых данных -->
+        <!-- Source: https://mvnrepository.com/artifact/net.datafaker/datafaker -->
+        <dependency>
+            <groupId>net.datafaker</groupId>
+            <artifactId>datafaker</artifactId>
+            <version>${faker.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Lombok: меньше бойлерплейта -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
         </dependency>
 
         <!-- Allure для JUnit 5 -->

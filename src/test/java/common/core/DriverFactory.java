@@ -1,17 +1,17 @@
 package common.core;
 
+import config.Config;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import static config.Config.BROWSER;
 
 public class DriverFactory {
     public static WebDriver createDriver() {
-        String browser = System.getProperty("browser", "chrome");
+        String browser = Config.INSTANCE.browser();
         WebDriver driver;
-        switch (BROWSER) {
+        switch (browser) {
             case "chrome":
                 WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver();
@@ -26,6 +26,4 @@ public class DriverFactory {
         driver.manage().window().maximize();
         return driver;
     }
-
-
 }

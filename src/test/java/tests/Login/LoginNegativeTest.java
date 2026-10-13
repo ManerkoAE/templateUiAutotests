@@ -1,7 +1,8 @@
 package tests.Login;
 
-import config.ConfigLoader;
 import common.pages.LoginPage;
+import common.utils.TestData;
+import config.Config;
 import org.junit.jupiter.api.Test;
 import tests.BaseTest;
 import static config.Constant.ExpectedMessages.WRONG_CREDENTIALS_ERROR;
@@ -11,9 +12,9 @@ public class LoginNegativeTest extends BaseTest {
 
     @Test
     void loginWithInvalidCredentialsShowsError() {
-        String baseUrl = ConfigLoader.get("BaseBankUrl");
-        String wrongLogin = ConfigLoader.get("BankWrongLogin");
-        String wrongPassword = ConfigLoader.get("BankWrongPassword");
+        String baseUrl = Config.INSTANCE.baseBankUrl();
+        String wrongLogin = TestData.randomLogin();
+        String wrongPassword = TestData.randomPassword();
 
         LoginPage loginPage = new LoginPage(driver);
         driver.get(baseUrl + "/login");

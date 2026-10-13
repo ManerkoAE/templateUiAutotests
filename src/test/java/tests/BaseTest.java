@@ -3,31 +3,28 @@ package tests;
 import common.core.DriverFactory;
 import common.core.Listener;
 import common.pages.bank.BankLoansPage;
-import io.qameta.allure.Step;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import common.pages.BasePage;
 import org.openqa.selenium.WebDriverException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.File;
 import java.time.LocalDateTime;
+import config.Config;
 
-import static config.Config.*;
 
 @ExtendWith(Listener.class)
 @TestInstance(TestInstance.Lifecycle.PER_METHOD)
+@Slf4j
 public abstract class BaseTest {
 
     public WebDriver driver;
     protected BasePage basePage;
     protected BankLoansPage bankLoansPage;
-    public static final Logger LOGGER = LoggerFactory.getLogger(BaseTest.class);
 
-    @BeforeEach
+      @BeforeEach
     public void setUp() {
         driver = DriverFactory.createDriver();
         basePage = new BasePage(driver);
@@ -36,15 +33,15 @@ public abstract class BaseTest {
 
     @BeforeAll
     public static void clearReports() {
-        LOGGER.info("START TIME:" + LocalDateTime.now());
-        LOGGER.info("Start clear reports dir: target/allure-results");
+        log.info("START TIME:" + LocalDateTime.now());
+        log.info("Start clear reports dir: target/allure-results");
         deleteDirContents("allure-results");
     }
 
     private static void deleteDirContents(String path) {
         File dir = new File(path);
         if (!dir.isDirectory()) {
-            LOGGER.info("Директория {} не существует — пропускаю очистку", dir.getAbsolutePath());
+            log.info("Директория {} не существует — пропускаю очистку", dir.getAbsolutePath());
             return;
         }
         File[] files = dir.listFiles();
@@ -56,13 +53,14 @@ public abstract class BaseTest {
 
     @AfterEach
     void clearCookiesAndSessionStorage() {
-        if (CLEAR_COOKIES && driver != null) {
+        if (Config.INSTANCE.clearCookies() && driver != null) {
             try {
                 JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
                 driver.manage().deleteAllCookies();
                 javascriptExecutor.executeScript("window.sessionStorage.clear()");
             } catch (WebDriverException wde) {
-            }
+            log.debug("Не удалось очистить cookies/sessionStorage: {}", wde.getMessage());
+        }
         }
     }
 }

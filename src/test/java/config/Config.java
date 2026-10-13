@@ -1,19 +1,50 @@
 package config;
 
-public class Config {
-    /**
-     * Specify the browser and platform for test:
-     * CHROME
-     * MOZILLA
-     */
-    public static final String BROWSER = "chrome";
+import org.aeonbits.owner.Config.Sources;
+import org.aeonbits.owner.Config.LoadPolicy;
+import org.aeonbits.owner.Config.LoadType;
+import org.aeonbits.owner.ConfigFactory;
+import org.aeonbits.owner.Config.Key;
+import org.aeonbits.owner.Config.DefaultValue;
 
-    public static final boolean CLEAR_COOKIES =
-            ConfigLoader.getBoolean("clear.cookies", true);
+@LoadPolicy(LoadType.MERGE)
+@Sources({"system:properties", "classpath:config.properties"})
+public interface Config extends org.aeonbits.owner.Config {
 
-    public static final boolean CLEAR_REPORT_DIR =
-            ConfigLoader.getBoolean("clear.report.dir", true);
+    @Key("explicit.wait")
+    @DefaultValue("10")
+    int explicitWait();
 
-    public static final boolean HOLD_BROWSER_OPEN =
-            ConfigLoader.getBoolean("hold.browser.open", false);
+    @Key("base.bank.url")
+    String baseBankUrl();
+
+    @Key("bank.login")
+    String bankLogin();
+
+    @Key("bank.password")
+    String bankPassword();
+
+    @Key("bank.wrong.login")
+    String bankWrongLogin();
+
+    @Key("bank.wrong.password")
+    String bankWrongPassword();
+
+    @Key("clear.cookies")
+    @DefaultValue("true")
+    boolean clearCookies();
+
+    @Key("hold.browser.open")
+    @DefaultValue("false")
+    boolean holdBrowserOpen();
+
+    @Key("clear.report.dir")
+    @DefaultValue("true")
+    boolean clearReportDir();
+
+    @Key("browser")
+    @DefaultValue("chrome")
+    String browser();
+
+    Config INSTANCE = ConfigFactory.create(Config.class, System.getProperties(), System.getenv());
 }

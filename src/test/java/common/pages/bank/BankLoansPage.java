@@ -1,5 +1,6 @@
 package common.pages.bank;
 
+import config.Config;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,10 +8,7 @@ import common.pages.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
-
-import static config.Constant.Timeouts.EXPLICIT_WAIT;
 
 public class BankLoansPage extends BasePage {
 
@@ -63,13 +61,13 @@ public class BankLoansPage extends BasePage {
     }
 
     public void waitUntilOtpFieldDisappears() {
-        new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAIT))
+        new WebDriverWait(driver, Duration.ofSeconds(Config.INSTANCE.explicitWait()))
                 .until(ExpectedConditions.invisibilityOfElementLocated(otpSubmit));
     }
 
     @Step("Получить текст ошибки логина")
     public String getLoginErrorText() {
-        return new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAIT))
+        return new WebDriverWait(driver, Duration.ofSeconds(Config.INSTANCE.explicitWait()))
                 .until(ExpectedConditions.visibilityOfElementLocated(loginError))
                 .getText();
     }

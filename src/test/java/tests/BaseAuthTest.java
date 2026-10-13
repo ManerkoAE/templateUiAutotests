@@ -1,30 +1,23 @@
 package tests;
 
-import config.ConfigLoader;
 import common.pages.LoginPage;
+import config.Config;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 
+@Slf4j
 public class BaseAuthTest extends BaseTest {
-
     @BeforeEach
     @Override
     public void setUp() {
         super.setUp();
+        log.info("Выполняем авторизацию перед тестом...");
+        log.info("URL: {}", Config.INSTANCE.baseBankUrl());
 
-        String login = ConfigLoader.get("BankLogin");
-        String password = ConfigLoader.get("BankPassword");
-        String baseUrl = ConfigLoader.get("BaseBankUrl");
-
-
-        LOGGER.info("Выполняем авторизацию перед тестом...");
-        LOGGER.info("URL: {}", baseUrl);
         LoginPage loginPage = new LoginPage(driver);
-
-        driver.get(baseUrl + "/login");
-        loginPage.loginAs(login, password);
-
+        loginPage.openLoginPage();   // ← используем метод из BasePage
+        loginPage.loginAs(Config.INSTANCE.bankLogin(), Config.INSTANCE.bankPassword());
         loginPage.waitForUrlContains("/bank");
-
-        LOGGER.info("Авторизация выполнена успешно");
+        log.info("Авторизация выполнена успешно");
     }
 }
