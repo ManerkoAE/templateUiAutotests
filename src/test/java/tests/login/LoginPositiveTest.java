@@ -26,7 +26,7 @@ public class LoginPositiveTest extends BaseTest {
         BankPage bankPage = new BankPage(driver);
         Allure.step("Проверка авторизации пользователя", () -> {
             assertThat(bankPage.isUserLoggedIn(Config.INSTANCE.bankEmail()))
-                    .as("Пользователь %s не авторизован", login)
+                    .withFailMessage("Пользователь %s не авторизован", login)
                     .isTrue();
         });
     }

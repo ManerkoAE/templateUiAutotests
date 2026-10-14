@@ -26,7 +26,6 @@ public abstract class BasePage {
         driver.get(url);
     }
 
-
     @Step("Получить актуальную страницу сайта")
     public String getCurrentUrl() {
         return driver.getCurrentUrl();

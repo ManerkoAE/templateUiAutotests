@@ -1,6 +1,7 @@
 package tests.cards;
 
 import config.Config;
+import io.qameta.allure.Allure;
 import org.junit.jupiter.api.Test;
 import tests.BaseAuthTest;
 
@@ -20,8 +21,10 @@ public class ShowCardsPositiveTest extends BaseAuthTest {
 
         bankLoansPage.enterOtpCode(expectedCode);
         String actualCode = bankLoansPage.getOtpInputValue();
-        assertThat(expectedCode).as("Код подтверждения введён корректно").isEqualTo(actualCode);
-        bankLoansPage.submitOtp();
-        bankLoansPage.waitUntilOtpFieldDisappears();
+        Allure.step("Проверка корректности ввода кода", () -> {
+            assertThat(expectedCode).isEqualTo(actualCode);
+            bankLoansPage.submitOtp();
+            bankLoansPage.waitUntilOtpFieldDisappears();
+        });
     }
 }

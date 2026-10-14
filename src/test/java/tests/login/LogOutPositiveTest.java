@@ -4,6 +4,7 @@ import common.pages.BankPage;
 import common.pages.LoginPage;
 import common.utils.SeleniumUtils;
 import config.Config;
+import io.qameta.allure.Allure;
 import org.junit.jupiter.api.Test;
 import tests.BaseAuthTest;
 
@@ -14,11 +15,13 @@ public class LogOutPositiveTest extends BaseAuthTest {
     void userCanLogOut() {
         BankPage bankPage = new BankPage(driver);
         LoginPage loginPage = new LoginPage(driver);
-
-        assertThat(bankPage.isUserLoggedIn(Config.INSTANCE.bankEmail())).as("Пользователь должен быть авторизован после ввода валидных данных").isTrue();
-
+        Allure.step("Пользователь должен быть авторизован после ввода валидных данных", () -> {
+            assertThat(bankPage.isUserLoggedIn(Config.INSTANCE.bankEmail())).isTrue();
+        });
         bankPage.logout();
         SeleniumUtils.waitForUrlContains(driver, Config.INSTANCE.baseBankUrl() + "/login");
-        assertThat(loginPage.isLoginFormVisible()).as("После выхода должна отображаться форма логина").isTrue();
+        Allure.step("Проверка выхода пользователя из учетной записи", () -> {
+            assertThat(loginPage.isLoginFormVisible()).isTrue();
+        });
     }
 }

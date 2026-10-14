@@ -21,7 +21,7 @@ public class LoginNegativeTest extends BaseTest {
         loginPage.open();
         loginPage.loginAs(wrongLogin, wrongPassword);
         Allure.step("Проверка авторизации пользователя", () -> {
-            assertThat(loginPage.getErrorText()).as("Должно быть сообщение об ошибке").
+            assertThat(loginPage.getErrorText()).withFailMessage("Должно быть сообщение об ошибке").
                     isEqualTo(WRONG_CREDENTIALS_ERROR);
         });
     }

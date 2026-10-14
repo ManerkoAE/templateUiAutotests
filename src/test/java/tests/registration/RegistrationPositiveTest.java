@@ -26,9 +26,9 @@ public class RegistrationPositiveTest extends BaseTest {
         RegistrationPage registrationPage = new RegistrationPage(driver);
         registrationPage.clickOnRegistrationButton();
         registrationPage.open();
-        assertThat(registrationPage.getCurrentUrl())
-                .as("Страница регистрации должна быть открыта")
-                .isEqualTo(Config.INSTANCE.baseBankUrl() + "/register");
+        Allure.step("Проверка открытия страницы регистрации", () -> {
+            assertThat(registrationPage.getCurrentUrl()).isEqualTo(Config.INSTANCE.baseBankUrl() + "/register");
+        });
 
         registrationPage.registerNewUser(firstName, lastName, email,
                 newLogin, newPassword, confirmNewPassword);
