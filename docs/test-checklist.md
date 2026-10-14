@@ -25,7 +25,7 @@
 
 Топ библиотек для изучения
 1) сам тестовый фрем JUnit5
-2) Для UI: Selenium Selenide  Playwrite
+2) Для UI: Selenium Selenide  Playwright
 3) Для REST Rest Assured
 4) Вспомогательные но полезные: Owner AssertJ Lombok.  это прям база
 5) для базы Spring JDBS\ Hybernate

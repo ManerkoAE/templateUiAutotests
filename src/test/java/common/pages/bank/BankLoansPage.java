@@ -8,7 +8,10 @@ import common.pages.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.time.Duration;
+
+import static common.utils.SeleniumUtils.waitElementIsVisible;
 
 public class BankLoansPage extends BasePage {
 
@@ -24,28 +27,28 @@ public class BankLoansPage extends BasePage {
     }
 
     public BankLoansPage checkLoginErrorIsPresent(String text) {
-        WebElement errorMsg = waitElementIsVisible(loginError);
+        WebElement errorMsg = waitElementIsVisible(driver, loginError);
         return this;
     }
 
     @Step("нажать кнопку Подробной информации о картах")
     public void clickShowCardDetails() {
-        waitElementIsVisible(toggleCardDetails).click();
+        waitElementIsVisible(driver, toggleCardDetails).click();
     }
 
     @Step("Получить проверочный код")
     public String getOtpCode() {
-        return waitElementIsVisible(otpCode).getText();
+        return waitElementIsVisible(driver, otpCode).getText();
     }
 
     @Step("Скопировать проверочный код")
     public void clickCopyCode() {
-        waitElementIsVisible(copyCodeButton).click();
+        waitElementIsVisible(driver, copyCodeButton).click();
     }
 
     @Step("Ввести проверочный код")
     public void enterOtpCode(String code) {
-        WebElement input = waitElementIsVisible(otpInput);
+        WebElement input = waitElementIsVisible(driver, otpInput);
         input.clear();
         input.sendKeys(code);
     }
@@ -57,7 +60,7 @@ public class BankLoansPage extends BasePage {
 
     @Step("Подтвердить проверочный код")
     public void submitOtp() {
-        waitElementIsVisible(otpSubmit).click();
+        waitElementIsVisible(driver, otpSubmit).click();
     }
 
     public void waitUntilOtpFieldDisappears() {
