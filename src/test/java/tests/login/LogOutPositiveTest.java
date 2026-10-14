@@ -1,7 +1,9 @@
-package tests.Login;
+package tests.login;
 
 import common.pages.BankPage;
 import common.pages.LoginPage;
+import common.utils.SeleniumUtils;
+import config.Config;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import tests.BaseAuthTest;
@@ -14,12 +16,12 @@ public class LogOutPositiveTest extends BaseAuthTest {
         BankPage bankPage = new BankPage(driver);
         LoginPage loginPage = new LoginPage(driver);
 
-        assertThat(bankPage.isUserLoggedIn())
+        assertThat(bankPage.isUserLoggedIn(Config.INSTANCE.bankEmail()))
                 .as("Пользователь должен быть авторизован после ввода валидных данных")
                 .isTrue();
 
         bankPage.logout();
-        loginPage.waitForUrlContains("/bank/login");
+       SeleniumUtils.waitForUrlContains(driver, Config.INSTANCE.baseBankUrl()+"/login");
         assertThat(loginPage.isLoginFormVisible())
                 .as("После выхода должна отображаться форма логина")
                 .isTrue();

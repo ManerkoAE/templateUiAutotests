@@ -8,7 +8,6 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import common.pages.BasePage;
 import org.openqa.selenium.WebDriverException;
 import java.io.File;
 import java.time.LocalDateTime;
@@ -21,13 +20,12 @@ import config.Config;
 public abstract class BaseTest {
 
     public WebDriver driver;
-    protected BasePage basePage;
+//    protected BasePage basePage;
     protected BankLoansPage bankLoansPage;
 
       @BeforeEach
     public void setUp() {
         driver = DriverFactory.createDriver();
-        basePage = new BasePage(driver);
         bankLoansPage = new BankLoansPage(driver);
     }
 

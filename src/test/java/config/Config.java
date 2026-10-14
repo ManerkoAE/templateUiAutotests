@@ -24,6 +24,9 @@ public interface Config extends org.aeonbits.owner.Config {
     @Key("bank.password")
     String bankPassword();
 
+    @Key("bank.email")
+    String bankEmail();
+
     @Key("bank.wrong.login")
     String bankWrongLogin();
 

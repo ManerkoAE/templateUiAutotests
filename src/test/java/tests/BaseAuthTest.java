@@ -1,6 +1,7 @@
 package tests;
 
 import common.pages.LoginPage;
+import common.utils.SeleniumUtils;
 import config.Config;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,9 +16,9 @@ public class BaseAuthTest extends BaseTest {
         log.info("URL: {}", Config.INSTANCE.baseBankUrl());
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.openLoginPage();   // ← используем метод из BasePage
+        loginPage.open();   // ← используем метод из BasePage
         loginPage.loginAs(Config.INSTANCE.bankLogin(), Config.INSTANCE.bankPassword());
-        loginPage.waitForUrlContains("/bank");
+        SeleniumUtils.waitForUrlContains(driver, Config.INSTANCE.baseBankUrl());
         log.info("Авторизация выполнена успешно");
     }
 }

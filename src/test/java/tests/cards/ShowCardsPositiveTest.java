@@ -11,7 +11,7 @@ public class ShowCardsPositiveTest extends BaseAuthTest {
 
     @Test
     public void ShowCards() {
-        basePage.goToUrl(Config.INSTANCE.baseBankUrl());
+        driver.get(Config.INSTANCE.baseBankUrl());
         log.info("Текущий URL: {} ", Config.INSTANCE.baseBankUrl());
         bankLoansPage.clickShowCardDetails();
         log.info(" Осуществлен переход на страницу Мои карты");

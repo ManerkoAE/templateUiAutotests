@@ -1,7 +1,8 @@
-package tests.Login;
+package tests.login;
 
 import common.pages.BankPage;
 import common.pages.LoginPage;
+import common.utils.SeleniumUtils;
 import config.Config;
 import io.qameta.allure.Allure;
 import org.junit.jupiter.api.Test;
@@ -14,16 +15,16 @@ public class LoginPositiveTest extends BaseTest {
     void userCanLoginWithValidCredentials() {
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.openLoginPage();
+        loginPage.open();
 
         String login = Config.INSTANCE.bankLogin();
         String password = Config.INSTANCE.bankPassword();
         loginPage.loginAs(login, password);
-        loginPage.waitForUrlContains("/bank");
+        SeleniumUtils.waitForUrlContains(driver,"/bank");
 
         BankPage bankPage = new BankPage(driver);
         Allure.step("Проверка авторизации пользователя", () -> {
-            assertThat(bankPage.isUserLoggedIn())
+            assertThat(bankPage.isUserLoggedIn(Config.INSTANCE.bankEmail()))
                     .as("Пользователь %s не авторизован", login)
                     .isTrue();
         });
