@@ -9,7 +9,8 @@ public final class TestData {
     private static final Faker FAKER = new Faker(new Locale("ru"));
     private static final ThreadLocal<String> LAST_PASSWORD = new ThreadLocal<>();
 
-    private TestData() {}
+    private TestData() {
+    }
 
     public static String randomFirstName() {
         return FAKER.name().firstName();
@@ -26,6 +27,7 @@ public final class TestData {
     public static String randomLogin() {
         return "user_" + FAKER.regexify("[a-z0-9]{8}");
     }
+
     /**
      * Генерирует новый пароль и запоминает его как «текущий».
      * Последующий вызов confirmRandomPassword() вернёт то же самое значение.

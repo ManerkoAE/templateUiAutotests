@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 
 public class RegistrationPage extends BasePage {
 
-    private final By regitrationButton = By.cssSelector("a[data-testid='link-to-register']");
+    private final By registrationButton = By.cssSelector("a[data-testid='link-to-register']");
 
     private final By firstNameInput = By.id("firstName");
     private final By lastNameInput = By.id("lastName");
@@ -30,11 +30,11 @@ public class RegistrationPage extends BasePage {
 
     @Step("Перейти на страницу регистрации")
     public void clickOnRegistrationButton() {
-        driver.findElement(regitrationButton).click();
+        driver.findElement(registrationButton).click();
     }
 
     @Step("Заполнить форму регистрации")
-    public void registerNewUser(String firstName,String lastName,String email,String randomLogin,String randomPassword,String confirmPassword) {
+    public void registerNewUser(String firstName, String lastName, String email, String randomLogin, String randomPassword, String confirmPassword) {
         SeleniumUtils.waitElementIsVisible(driver, firstNameInput).sendKeys(firstName);
         SeleniumUtils.waitElementIsVisible(driver, lastNameInput).sendKeys(lastName);
         SeleniumUtils.waitElementIsVisible(driver, emailInput).sendKeys(email);

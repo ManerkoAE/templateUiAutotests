@@ -1,6 +1,7 @@
 package tests.registration;
 
 import common.pages.BankPage;
+import common.pages.LoginPage;
 import common.pages.RegistrationPage;
 import common.utils.SeleniumUtils;
 import common.utils.TestData;
@@ -22,9 +23,8 @@ public class RegistrationPositiveTest extends BaseTest {
         String newLogin = TestData.randomLogin();
         String newPassword = TestData.randomPassword();
         String confirmNewPassword = TestData.confirmRandomPassword();
-
         RegistrationPage registrationPage = new RegistrationPage(driver);
-
+        registrationPage.clickOnRegistrationButton();
         registrationPage.open();
         assertThat(registrationPage.getCurrentUrl())
                 .as("Страница регистрации должна быть открыта")

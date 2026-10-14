@@ -7,6 +7,7 @@ import config.Config;
 import io.qameta.allure.Allure;
 import org.junit.jupiter.api.Test;
 import tests.BaseTest;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LoginPositiveTest extends BaseTest {
@@ -20,7 +21,7 @@ public class LoginPositiveTest extends BaseTest {
         String login = Config.INSTANCE.bankLogin();
         String password = Config.INSTANCE.bankPassword();
         loginPage.loginAs(login, password);
-        SeleniumUtils.waitForUrlContains(driver,"/bank");
+        SeleniumUtils.waitForUrlContains(driver, "/bank");
 
         BankPage bankPage = new BankPage(driver);
         Allure.step("Проверка авторизации пользователя", () -> {

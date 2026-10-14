@@ -13,7 +13,8 @@ import java.time.Duration;
 
 public final class SeleniumUtils {
 
-    private SeleniumUtils() {}
+    private SeleniumUtils() {
+    }
 
     @Step("Ожидать пока отобразится элемент {locator}")
     public static WebElement waitElementIsVisible(WebDriver driver, By locator) {

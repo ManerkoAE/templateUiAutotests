@@ -5,13 +5,14 @@ import common.utils.TestData;
 import config.Config;
 import org.junit.jupiter.api.Test;
 import tests.BaseTest;
-import static config.Constant.ExpectedMessages.WRONG_UserName_ERROR;
+
+import static config.Constant.ExpectedMessages.WRONG_USER_NAME_ERROR;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RegistrationNegativeTest extends BaseTest {
 
     @Test
-    void RegistrationWithInvalidCredentialsShowsError() {
+    void registrationWithInvalidCredentialsShowsError() {
 
         String firstName = TestData.randomFirstName();
         String lastName = TestData.randomLastName();
@@ -28,9 +29,9 @@ public class RegistrationNegativeTest extends BaseTest {
                 .as("Страница регистрации должна быть открыта")
                 .isEqualTo(Config.INSTANCE.baseBankUrl() + "/register");
 
-        registrationPage.registerNewUser(firstName, lastName,email,wrongLogin,newPassword,confirmNewPassword);
+        registrationPage.registerNewUser(firstName, lastName, email, wrongLogin, newPassword, confirmNewPassword);
         assertThat(registrationPage.getRegistrationErrorText()).as("Должно быть сообщение об ошибке").
-                isEqualTo(WRONG_UserName_ERROR);
+                isEqualTo(WRONG_USER_NAME_ERROR);
 
     }
 }

@@ -12,21 +12,27 @@ public class CardsPage extends BasePage {
     private final By otpInput = By.xpath("//input[@data-testid='otp-input']");
     private final By otpSubmit = By.xpath("//button[@data-testid='otp-submit-btn']");
 
-    public CardsPage(WebDriver driver) { super(driver); }
+    public CardsPage(WebDriver driver) {
+        super(driver);
+    }
+
     @Step("Нажать кнопку деталей карты")
     public void clickShowCardDetails() {
-        waitElementIsVisible(driver,toggleCardDetails).click();
+        waitElementIsVisible(driver, toggleCardDetails).click();
     }
+
     @Step("Получить проверочный код")
     public String getOtpCode() {
-        return waitElementIsVisible(driver,otpCode).getText();
+        return waitElementIsVisible(driver, otpCode).getText();
     }
+
     @Step("Ввести проверочный код")
     public void enterOtpCode(String code) {
-        waitElementIsVisible(driver,otpInput).sendKeys(code);
+        waitElementIsVisible(driver, otpInput).sendKeys(code);
     }
+
     @Step("Подтвердить проверочный код")
     public void submitOtp() {
-        waitElementIsVisible(driver,otpSubmit).click();
+        waitElementIsVisible(driver, otpSubmit).click();
     }
 }

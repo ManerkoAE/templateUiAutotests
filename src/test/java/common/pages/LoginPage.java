@@ -19,22 +19,23 @@ public class LoginPage extends BasePage {
     }
 
     public LoginPage(WebDriver driver) {
-        super(driver); }
+        super(driver);
+    }
 
     @Step("Войти как {login}")
     public void loginAs(String login, String password) {
-        SeleniumUtils.waitElementIsVisible(driver,usernameInput).sendKeys(login);
-        SeleniumUtils.waitElementIsVisible(driver,passwordInput).sendKeys(password);
-        SeleniumUtils.waitElementIsVisible(driver,loginButton).click();
+        SeleniumUtils.waitElementIsVisible(driver, usernameInput).sendKeys(login);
+        SeleniumUtils.waitElementIsVisible(driver, passwordInput).sendKeys(password);
+        SeleniumUtils.waitElementIsVisible(driver, loginButton).click();
     }
 
     @Step("Получить текст ошибки логина")
     public String getErrorText() {
-        return SeleniumUtils.waitElementIsVisible(driver,loginError).getText();
+        return SeleniumUtils.waitElementIsVisible(driver, loginError).getText();
     }
 
     @Step("Проверить, что форма логина отображается")
     public boolean isLoginFormVisible() {
-        return SeleniumUtils.isElementVisible(driver,loginForm);
+        return SeleniumUtils.isElementVisible(driver, loginForm);
     }
 }
