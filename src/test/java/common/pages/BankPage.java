@@ -13,7 +13,7 @@ public class BankPage extends BasePage {
 
     @Override
     protected String path() {
-        return "/bank";   // или "/bank"
+        return "/bank";
     }
 
     private final By logoutButton = By.cssSelector("[data-testid='logout-btn']");
