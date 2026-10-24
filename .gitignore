@@ -23,6 +23,9 @@ build/
 *.exe
 *.log
 .allure/
+config.properties
+docs/
 
 # Локальные настройки: шаблон для нового окружения — config.properties.example
-config.properties
+config.properties.example
+docs/myReadme.md
