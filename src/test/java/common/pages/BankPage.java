@@ -12,19 +12,29 @@ import static common.utils.SeleniumUtils.waitElementIsVisible;
 public class BankPage extends BasePage {
 
     @Override
-    protected String path() {
-        return "/bank";
+    protected PagePath path() {
+        return PagePath.BANK;
     }
 
-    private final By logoutButton = By.cssSelector("[data-testid='logout-btn']");
+    private static final By TOGGLE_CARD_DETAILS = By.cssSelector("[data-testid='toggle-card-details']");
+    private static final By FAST_TRANSFER_BUTTON = By.partialLinkText("Fast transfer/Быстрый перевод");
+    private static final By LOGOUT_BUTTON = By.cssSelector("[data-testid='logout-btn']");
 
     public BankPage(WebDriver driver) {
         super(driver);
     }
 
+    @Step("нажать кнопку Подробной информации о картах")
+    public void clickShowCardDetails() {
+        waitElementIsVisible(driver, TOGGLE_CARD_DETAILS).click();
+    }
+
+    @Step("Нажать кнопку \"Быстрый перевод\"")
+    public void clickFastTransferButton() {waitElementIsVisible(driver, FAST_TRANSFER_BUTTON).click();}
+
     @Step("Проверить, что пользователь с email {email} залогинен")
     public boolean isUserLoggedIn(String email) {
-        By userEmail = By.xpath("//*[@title='" + email + "']");
+        By userEmail = By.cssSelector("[title='%s']".formatted(email));
         try {
             SeleniumUtils.waitElementIsVisible(driver, userEmail);
             return true;
@@ -35,6 +45,6 @@ public class BankPage extends BasePage {
 
     @Step("Выйти из системы")
     public void logout() {
-        waitElementIsVisible(driver, logoutButton).click();
+        waitElementIsVisible(driver, LOGOUT_BUTTON).click();
     }
 }

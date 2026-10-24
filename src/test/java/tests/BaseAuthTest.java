@@ -1,8 +1,8 @@
 package tests;
 
+import common.pages.BankPage;
 import common.pages.LoginPage;
-import common.utils.SeleniumUtils;
-import config.Config;
+import config.TestConfig;
 import org.junit.jupiter.api.BeforeEach;
 
 public class BaseAuthTest extends BaseTest {
@@ -13,7 +13,8 @@ public class BaseAuthTest extends BaseTest {
 
         LoginPage loginPage = new LoginPage(driver);
         loginPage.open();
-        loginPage.loginAs(Config.INSTANCE.bankLogin(), Config.INSTANCE.bankPassword());
-        SeleniumUtils.waitForUrlContains(driver, Config.INSTANCE.baseBankUrl());
+        loginPage.loginAs(TestConfig.INSTANCE.bankLogin(), TestConfig.INSTANCE.bankPassword());
+
+        new BankPage(driver).waitUntilOpened();
     }
 }

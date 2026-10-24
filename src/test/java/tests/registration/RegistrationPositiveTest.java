@@ -3,18 +3,23 @@ package tests.registration;
 import common.pages.BankPage;
 import common.pages.LoginPage;
 import common.pages.RegistrationPage;
-import common.utils.SeleniumUtils;
 import common.utils.TestData;
-import config.Config;
 import io.qameta.allure.Allure;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.Test;
 import tests.BaseTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Story("Успешная регистрация нового пользователя")
 public class RegistrationPositiveTest extends BaseTest {
 
     @Test
+    @Description("Проверка регистрации валидными данными")
+    @Severity(SeverityLevel.NORMAL)
     void userCanRegisterWithValidCredentials() {
 
         String firstName = TestData.randomFirstName();
@@ -23,19 +28,19 @@ public class RegistrationPositiveTest extends BaseTest {
         String newLogin = TestData.randomLogin();
         String newPassword = TestData.randomPassword();
         String confirmNewPassword = TestData.confirmRandomPassword();
-        RegistrationPage registrationPage = new RegistrationPage(driver);
-        registrationPage.clickOnRegistrationButton();
-        registrationPage.open();
-        Allure.step("Проверка открытия страницы регистрации", () -> {
-            assertThat(registrationPage.getCurrentUrl()).isEqualTo(Config.INSTANCE.baseBankUrl() + "/register");
-        });
 
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.open();
+        loginPage.clickOnRegistrationButton();
+
+        RegistrationPage registrationPage = new RegistrationPage(driver);
+        registrationPage.waitUntilOpened();
         registrationPage.registerNewUser(firstName, lastName, email,
                 newLogin, newPassword, confirmNewPassword);
 
-        SeleniumUtils.waitForUrlContains(driver, "/bank");
-
         BankPage bankPage = new BankPage(driver);
+        bankPage.waitUntilOpened();
+
         Allure.step("Проверка регистрации нового пользователя", () -> {
             assertThat(bankPage.isUserLoggedIn(email))
                     .as("Пользователь %s зарегистрирован", newLogin)

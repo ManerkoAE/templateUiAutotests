@@ -1,6 +1,6 @@
 package common.utils;
 
-import config.Config;
+import config.TestConfig;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -18,13 +18,8 @@ public final class SeleniumUtils {
 
     @Step("Ожидать пока отобразится элемент {locator}")
     public static WebElement waitElementIsVisible(WebDriver driver, By locator) {
-        return new WebDriverWait(driver, Duration.ofSeconds(Config.INSTANCE.explicitWait()))
+        return new WebDriverWait(driver, Duration.ofSeconds(TestConfig.INSTANCE.explicitWait()))
                 .until(ExpectedConditions.visibilityOfElementLocated(locator));
-    }
-
-    @Step("Проверка наличия элемента {locator}")
-    public static boolean isElementPresent(WebDriver driver, By locator) {
-        return !driver.findElements(locator).isEmpty();
     }
 
     @Step("Проверка видимости элемента {locator}")
@@ -36,9 +31,9 @@ public final class SeleniumUtils {
         }
     }
 
-    @Step("Ждать появления нужного URL: {urlPart}")
-    public static void waitForUrlContains(WebDriver driver, String urlPart) {
-        new WebDriverWait(driver, Duration.ofSeconds(Config.INSTANCE.explicitWait()))
-                .until(ExpectedConditions.urlContains(urlPart));
+    @Step("Дождаться URL, подходящего под шаблон {regex}")
+    public static void waitForUrlMatches(WebDriver driver, String regex) {
+        new WebDriverWait(driver, Duration.ofSeconds(TestConfig.INSTANCE.explicitWait()))
+                .until(ExpectedConditions.urlMatches(regex));
     }
 }

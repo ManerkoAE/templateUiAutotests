@@ -1,65 +1,41 @@
 package common.core;
 
 import io.qameta.allure.Attachment;
-import io.qameta.allure.Step;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.TestWatcher;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import tests.BaseTest;
 
-import java.util.Optional;
-
-
+@Slf4j
 public class Listener implements TestWatcher {
 
     @Override
-    @Step("Тест пройден")
     public void testSuccessful(ExtensionContext context) {
-        quitDriver(context);
+        DriverHolder.quit();
     }
 
     @Override
-    @Step("Тест провален")
     public void testFailed(ExtensionContext context, Throwable cause) {
-        attachScreenshot(context);
-        quitDriver(context);
+        attachScreenshot();
+        DriverHolder.quit();
     }
 
     @Override
-    @Step("Тест прерван")
     public void testAborted(ExtensionContext context, Throwable cause) {
-        quitDriver(context);
+        DriverHolder.quit();
     }
 
-    @Override
-    @Step("Тест недоступен")
-    public void testDisabled(ExtensionContext context, Optional<String> reason) {
-        // драйвер не создавался, закрывать нечего
-    }
-
-    private void attachScreenshot(ExtensionContext context) {
-        Object instance = context.getRequiredTestInstance();
-        if (!(instance instanceof BaseTest baseTest)) return;
-        WebDriver driver = baseTest.driver;
-        if (driver == null) return;
-        try {
-            byte[] png = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-            attachScreenshotToAllure(png);
-        } catch (Exception e) {
+    private void attachScreenshot() {
+        WebDriver driver = DriverHolder.get();
+        if (driver == null) {
+            return;
         }
-    }
-
-    private void quitDriver(ExtensionContext context) {
-        Object instance = context.getRequiredTestInstance();
-        if (!(instance instanceof BaseTest baseTest)) return;
-        WebDriver driver = baseTest.driver;
-        if (driver != null) {
-            try {
-                driver.quit();
-            } catch (Exception e) {
-            }
+        try {
+            attachScreenshotToAllure(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
+        } catch (RuntimeException e) {
+            log.warn("Не удалось прикрепить снимок экрана", e);
         }
     }
 

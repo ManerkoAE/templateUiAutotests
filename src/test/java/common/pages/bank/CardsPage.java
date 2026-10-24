@@ -1,10 +1,11 @@
 package common.pages.bank;
 
-import config.Config;
+import common.pages.BasePage;
+import common.pages.PagePath;
+import config.TestConfig;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import common.pages.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -13,27 +14,21 @@ import java.time.Duration;
 
 import static common.utils.SeleniumUtils.waitElementIsVisible;
 
-public class BankLoansPage extends BasePage {
+public class CardsPage extends BasePage {
 
-    private final By loginError = By.cssSelector("[data-testid='login-error']");
-    private final By toggleCardDetails = By.xpath("//button[@data-testid='toggle-card-details']");
+
     private final By otpCode = By.cssSelector("[data-testid='otp-code-value']");
-    private final By copyCodeButton = By.xpath("//button[@title='Копировать код']");
-    private final By otpInput = By.xpath("//input[@data-testid='otp-input']");
-    private final By otpSubmit = By.xpath("//button[@data-testid='otp-submit-btn']");
+    private final By copyCodeButton = By.cssSelector("[title='Копировать код']");
+    private final By otpInput = By.cssSelector("[data-testid='otp-input']");
+    private final By otpSubmit = By.cssSelector("[data-testid='otp-submit-btn']");
 
-    public BankLoansPage(WebDriver driver) {
+    public CardsPage(WebDriver driver) {
         super(driver);
     }
 
-    public BankLoansPage checkLoginErrorIsPresent(String text) {
-        WebElement errorMsg = waitElementIsVisible(driver, loginError);
-        return this;
-    }
-
-    @Step("нажать кнопку Подробной информации о картах")
-    public void clickShowCardDetails() {
-        waitElementIsVisible(driver, toggleCardDetails).click();
+    @Override
+    protected PagePath path() {
+        return PagePath.BANK;
     }
 
     @Step("Получить проверочный код")
@@ -63,17 +58,9 @@ public class BankLoansPage extends BasePage {
         waitElementIsVisible(driver, otpSubmit).click();
     }
 
+    @Step("Подождать исчезновение поля")
     public void waitUntilOtpFieldDisappears() {
-        new WebDriverWait(driver, Duration.ofSeconds(Config.INSTANCE.explicitWait()))
+        new WebDriverWait(driver, Duration.ofSeconds(TestConfig.INSTANCE.explicitWait()))
                 .until(ExpectedConditions.invisibilityOfElementLocated(otpSubmit));
     }
-
-    @Step("Получить текст ошибки логина")
-    public String getLoginErrorText() {
-        return new WebDriverWait(driver, Duration.ofSeconds(Config.INSTANCE.explicitWait()))
-                .until(ExpectedConditions.visibilityOfElementLocated(loginError))
-                .getText();
-    }
 }
-
-
