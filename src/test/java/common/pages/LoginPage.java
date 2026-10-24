@@ -1,35 +1,48 @@
 package common.pages;
 
-import config.Config;
+import common.utils.SeleniumUtils;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 public class LoginPage extends BasePage {
-    private final By usernameInput = By.id("username");
-    private final By passwordInput = By.id("password");
-    private final By loginButton = By.xpath("//button[@data-testid='login-submit']");
-    private final By loginError = By.cssSelector("[data-testid='login-error']");
-    private final By loginForm = By.xpath("//div/form");
-    public LoginPage(WebDriver driver) {
-        super(driver); }
 
+    private static final By REGISTRATION_BUTTON = By.xpath("//a[@data-testid='link-to-register']");
+    private static final By USERNAME_INPUT = By.id("username");
+    private static final By PASSWORD_INPUT = By.id("password");
+    private static final By LOGIN_BUTTON = By.cssSelector("[data-testid='login-submit']");
+    private static final By LOGIN_ERROR = By.cssSelector("[data-testid='login-error']");
+    private static final By LOGIN_FORM = By.xpath("//div/form");
+
+    @Override
+    protected PagePath path() {
+        return PagePath.LOGIN;
+    }
+
+    public LoginPage(WebDriver driver) {
+        super(driver);
+    }
 
     @Step("Войти как {login}")
     public void loginAs(String login, String password) {
-        waitElementIsVisible(usernameInput).sendKeys(login);
-        waitElementIsVisible(passwordInput).sendKeys(password);
-        waitElementIsVisible(loginButton).click();
+        SeleniumUtils.waitElementIsVisible(driver, USERNAME_INPUT).sendKeys(login);
+        SeleniumUtils.waitElementIsVisible(driver, PASSWORD_INPUT).sendKeys(password);
+        SeleniumUtils.waitElementIsVisible(driver, LOGIN_BUTTON).click();
     }
+
     @Step("Получить текст ошибки логина")
-    public String getErrorText() {
-        return waitElementIsVisible(loginError).getText();
+    public String getLoginErrorText() {
+        return SeleniumUtils.waitElementIsVisible(driver, LOGIN_ERROR).getText();
     }
 
     @Step("Проверить, что форма логина отображается")
     public boolean isLoginFormVisible() {
-        return isElementVisible(loginForm);
+        return SeleniumUtils.isElementVisible(driver, LOGIN_FORM);
     }
+
+    @Step("Перейти на страницу регистрации")
+    public void clickOnRegistrationButton() {
+        SeleniumUtils.waitElementIsVisible(driver, REGISTRATION_BUTTON).click();
+    }
+
 }

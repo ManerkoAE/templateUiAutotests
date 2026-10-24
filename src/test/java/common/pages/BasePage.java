@@ -1,57 +1,48 @@
 package common.pages;
 
-import config.Config;
+import common.utils.SeleniumUtils;
+import config.TestConfig;
+import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
-import lombok.RequiredArgsConstructor;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import java.time.Duration;
+
+import java.util.Objects;
+import java.util.regex.Pattern;
 
 
-@RequiredArgsConstructor
-public class BasePage {
+public abstract class BasePage {
+
+    private static final String ALLOWED_URL_TAIL = "/?(?:[?#].*)?$";
+
     protected final WebDriver driver;
 
-    public void goToUrl(String url) {
-        driver.get(url);
+    protected BasePage(WebDriver driver) {
+        this.driver = Objects.requireNonNull(driver, "driver не может быть null");
     }
 
-    @Step("Открыть страницу логина")
-    public void openLoginPage() {
-        String baseUrl = Config.INSTANCE.baseBankUrl();
-        driver.get(baseUrl + "/login");
+    protected abstract PagePath path();
+
+    public String url() {
+        String baseUrl = TestConfig.INSTANCE.baseBankUrl();
+        String normalizedBaseUrl = baseUrl.endsWith("/") ? baseUrl.substring(0, baseUrl.length() - 1) : baseUrl;
+        return normalizedBaseUrl + path().value();
     }
 
-    @Step("Получить актуальную страницу сайта")
+    public void open() {
+        String url = url();
+        Allure.step("Открыть страницу " + url, () -> driver.get(url));
+    }
+
+    @Step("Дождаться открытия страницы")
+    public void waitUntilOpened() {
+        SeleniumUtils.waitForUrlMatches(driver, urlPattern());
+    }
+
     public String getCurrentUrl() {
         return driver.getCurrentUrl();
     }
 
-    @Step("Ожидать пока отобразится элемент {0}")
-    public WebElement waitElementIsVisible(By locator) {
-        return new WebDriverWait(driver, Duration.ofSeconds(Config.INSTANCE.explicitWait()))
-                .until(ExpectedConditions.visibilityOfElementLocated(locator));
+    private String urlPattern() {
+        return Pattern.quote(url()) + ALLOWED_URL_TAIL;
     }
-
-    @Step("Ждать появления нужного URL")
-    public void waitForUrlContains(String urlPart) {
-        new WebDriverWait(driver, Duration.ofSeconds(Config.INSTANCE.explicitWait()))
-                .until(ExpectedConditions.urlContains(urlPart));
-    }
-
-    @Step("Проверка наличия элемента")
-    public boolean isElementPresent(By locator) {
-        return !driver.findElements(locator).isEmpty();
-    }
-
-    @Step("Проверка видимости элемента")
-    public boolean isElementVisible(By locator) {
-       if(true)
-            return waitElementIsVisible(locator).isDisplayed();
-        else
-            return false;
-        }
 }

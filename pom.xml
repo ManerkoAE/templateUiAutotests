@@ -9,44 +9,51 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <!-- Единственный источник версии Java: свойство читает maven-compiler-plugin -->
+        <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>21</java.version>
 
         <!-- Версии плагинов -->
         <maven-surefire-plugin.version>3.2.2</maven-surefire-plugin.version>
         <maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
-        <maven-site-plugin.version>3.22.0</maven-site-plugin.version>
-        <allure-maven-plugin.version>2.12.0</allure-maven-plugin.version>
+        <allure-maven-plugin.version>3.0.3</allure-maven-plugin.version>
         <aspectj.version>1.9.25.1</aspectj.version>
 
         <!-- Версии библиотек -->
         <allure.version>2.35.3</allure.version>
-        <allure.report.version>2.35.3</allure.report.version>
+        <allure.report.version>2.46.1</allure.report.version>
+        <assertj.version>3.27.0</assertj.version>
+        <commons-io.version>2.22.0</commons-io.version>
         <junit.jupiter.version>5.10.3</junit.jupiter.version>
         <selenium.version>4.47.0</selenium.version>
         <logback.version>1.6.3</logback.version>
-        <webdrivermanager.version>6.3.4</webdrivermanager.version>
+        <lombok.version>1.18.34</lombok.version>
         <owner.version>1.0.12</owner.version>
         <faker.version>2.7.0</faker.version>
-        <lombok.version>1.18.34</lombok.version>
     </properties>
 
     <build>
         <plugins>
-            <!-- Плагин для генерации сайта -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-site-plugin</artifactId>
-                <version>${maven-site-plugin.version}</version>
-            </plugin>
-
-            <!-- Плагин для компиляции -->
+            <!-- Версия Java берётся из maven.compiler.release, отдельный <release> не нужен -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <!-- Имена параметров должны попадать в байт-код, иначе Allure
+                         не подставит их в названия шагов вида @Step("Войти как {login}") -->
+                    <parameters>true</parameters>
+                    <!-- Lombok указывается явно: так неявное включение annotation processing
+                         не важно (в JDK 23+ оно выключено по умолчанию), а версия обработчика
+                         фиксирована и не зависит от classpath -->
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
             </plugin>
 
             <!-- Плагин для запуска тестов -->
@@ -55,7 +62,6 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
-                    <testFailureIgnore>false</testFailureIgnore>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
@@ -67,13 +73,6 @@
                     </systemProperties>
                 </configuration>
                 <dependencies>
-                    <!-- Source: https://mvnrepository.com/artifact/commons-io/commons-io -->
-                    <dependency>
-                        <groupId>commons-io</groupId>
-                        <artifactId>commons-io</artifactId>
-                        <version>2.22.0</version>
-                        <scope>compile</scope>
-                    </dependency>
                     <dependency>
                         <groupId>org.aspectj</groupId>
                         <artifactId>aspectjweaver</artifactId>
@@ -82,67 +81,51 @@
                     </dependency>
                 </dependencies>
             </plugin>
-            <!-- annotation processing для Lombok -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven-compiler-plugin.version}</version>
-                <configuration>
-                    <release>21</release>
-                    <annotationProcessorPaths>
-                        <path>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                            <version>${lombok.version}</version>
-                        </path>
-                    </annotationProcessorPaths>
-                </configuration>
-            </plugin>
+
             <!-- Плагин Allure для генерации отчёта -->
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
-                <version>3.0.3</version>
+                <version>${allure-maven-plugin.version}</version>
                 <configuration>
-                    <reportVersion>2.46.1</reportVersion>
+                    <reportVersion>${allure.report.version}</reportVersion>
                 </configuration>
             </plugin>
         </plugins>
     </build>
 
     <dependencies>
-        <!-- JUnit 5 -->
+        <!-- JUnit 5: агрегатор приносит api, params и engine одной зависимостью -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>${junit.jupiter.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
+            <artifactId>junit-jupiter</artifactId>
             <version>${junit.jupiter.version}</version>
             <scope>test</scope>
         </dependency>
 
-        <!-- Selenium -->
+        <!-- Selenium: драйверы подбирает встроенный Selenium Manager (4.6+) -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>${selenium.version}</version>
         </dependency>
 
-        <!-- Логирование -->
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
-            <version>${logback.version}</version>
-        </dependency>
+        <!-- Логирование: logback-core приходит транзитивно, отдельно объявлять не нужно -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>${logback.version}</version>
         </dependency>
+
+        <!-- Lombok: @Slf4j вместо ручного LoggerFactory.getLogger в каждом классе.
+             scope=provided — библиотека нужна только на этапе компиляции -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
         <!-- Owner: конфигурация через интерфейсы -->
         <dependency>
             <groupId>org.aeonbits.owner</groupId>
@@ -151,7 +134,6 @@
         </dependency>
 
         <!-- Datafaker: генерация тестовых данных -->
-        <!-- Source: https://mvnrepository.com/artifact/net.datafaker/datafaker -->
         <dependency>
             <groupId>net.datafaker</groupId>
             <artifactId>datafaker</artifactId>
@@ -159,14 +141,12 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Lombok: меньше бойлерплейта -->
+        <!-- Добавление библиотеки транслитерации-->
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-            <scope>provided</scope>
+            <groupId>com.ibm.icu</groupId>
+            <artifactId>icu4j</artifactId>
+            <version>79.1</version>
         </dependency>
-
         <!-- Allure для JUnit 5 -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
@@ -174,17 +154,19 @@
             <version>${allure.version}</version>
         </dependency>
 
-        <!-- WebDriverManager (только одна версия!) -->
-        <dependency>
-            <groupId>io.github.bonigarcia</groupId>
-            <artifactId>webdrivermanager</artifactId>
-            <version>${webdrivermanager.version}</version>
-            <scope>test</scope>
-        </dependency>
+        <!-- AssertJ: читаемые проверки -->
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>3.27.0</version>
+            <version>${assertj.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- commons-io: рекурсивная очистка каталога результатов Allure (AllureResultsCleaner) -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
