@@ -1,0 +1,19 @@
+{
+  "id": "f1a05082-5d72-4d92-a6a8-8ae396da71a1",
+  "name": "GET /api/bank/user/{id} - 404",
+  "priority": 5,
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/api/bank/user/[^/]+"
+  },
+  "response": {
+    "status": 404,
+    "headers": { "Content-Type": "application/json" },
+    "jsonBody": {
+      "error": "Пользователь не найден"
+    }
+  },
+  "metadata": {
+    "operationId": "ab1b8c81-96a7-4e22-bb1b-dfc7e8907ea9"
+  }
+}

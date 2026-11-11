@@ -1,0 +1,19 @@
+{
+  "id": "f9dae33e-b482-4236-80d7-e8ee392202f4",
+  "name": "DELETE /api/bank/users/{userId}/loan-offers/{offerId} - 204",
+  "priority": 1,
+  "request": {
+    "method": "DELETE",
+    "urlPathPattern": "/api/bank/users/[^/]+/loan-offers/[^/]+"
+  },
+  "response": {
+    "status": 204,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "delete-api-bank-users-userId-loan-offers-offerId-204.json"
+  },
+  "metadata": {
+    "operationId": "3947dd02-d05a-4b6a-851a-4d0e942123df"
+  }
+}

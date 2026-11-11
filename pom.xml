@@ -20,7 +20,7 @@
         <aspectj.version>1.9.25.1</aspectj.version>
 
         <!-- Версии библиотек -->
-        <allure.version>2.35.3</allure.version>
+        <allure.version>2.29.1</allure.version>
         <allure.report.version>2.46.1</allure.report.version>
         <assertj.version>3.27.0</assertj.version>
         <commons-io.version>2.22.0</commons-io.version>
@@ -116,7 +116,13 @@
             <artifactId>logback-classic</artifactId>
             <version>${logback.version}</version>
         </dependency>
-
+<!-- Wiremock -->
+        <dependency>
+            <groupId>org.wiremock</groupId>
+            <artifactId>wiremock-standalone</artifactId>
+            <version>3.13.2</version>
+            <scope>test</scope>
+        </dependency>
         <!-- Lombok: @Slf4j вместо ручного LoggerFactory.getLogger в каждом классе.
              scope=provided — библиотека нужна только на этапе компиляции -->
         <dependency>
@@ -150,8 +156,9 @@
         <!-- Allure для JUnit 5 -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-jupiter</artifactId>
+            <artifactId>allure-junit5</artifactId>
             <version>${allure.version}</version>
+            <scope>test</scope>
         </dependency>
 
         <!-- AssertJ: читаемые проверки -->
@@ -167,6 +174,31 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>${commons-io.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- добавление библиотеки REST ASSURED-->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>5.5.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-rest-assured</artifactId>
+            <version>${allure.version}</version>
+        </dependency>
+        <!--Jackson для сериализации и десириализации(для удобной работы с JSON)-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.17.2</version>
+        </dependency>
+        <!-- Для проверки соответствия JSON-схеме (опционально, но полезно) -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>json-schema-validator</artifactId>
+            <version>5.5.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

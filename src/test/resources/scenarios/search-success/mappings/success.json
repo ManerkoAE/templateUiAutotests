@@ -1,0 +1,24 @@
+{
+  "id": "7496a9a0-682c-41b5-a153-0420a6470b75",
+  "name": "GET /api/bank/search - 200",
+  "priority": 1,
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/api/bank/search",
+    "queryParameters": {
+      "q": {
+        "matches": ".+"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "get-api-bank-search-200.json"
+  },
+  "metadata": {
+    "operationId": "bf7d386e-0b7f-4f9d-a4a6-95b7de8a45a3"
+  }
+}

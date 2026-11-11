@@ -1,0 +1,19 @@
+{
+  "id": "736a0565-0d62-4b66-84f6-c43a1f30b0ca",
+  "name": "GET /api/bank/loan-products/standard - 200",
+  "priority": 1,
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/api/bank/loan-products/standard"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "get-api-bank-loan-products-standard-200.json"
+  },
+  "metadata": {
+    "operationId": "8a40318a-d6f2-455f-8cbf-98dd38793947"
+  }
+}

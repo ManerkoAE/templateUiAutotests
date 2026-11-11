@@ -1,6 +1,7 @@
 package common.utils;
 
 import java.text.Normalizer;
+
 import com.ibm.icu.text.Transliterator;
 import io.qameta.allure.Step;
 import net.datafaker.Faker;
@@ -12,7 +13,6 @@ public final class TestData {
     private static final Faker FAKER = new Faker(Locale.of("ru"));
     private static final Transliterator CYR_LAT =
             Transliterator.getInstance("Cyrillic-Latin");
-    private static int emailCounter = 0;
     private static String lastPassword;
     private static String lastFirstName;
     private static String lastLastName;
@@ -26,6 +26,7 @@ public final class TestData {
         lastFirstName = firstName;
         return firstName;
     }
+
     @Step("Подтверждение рандомного имени")
     public static String duplicateRandomFirstName() {
         if (lastFirstName == null) {
@@ -53,7 +54,7 @@ public final class TestData {
 
     @Step("Создание рандомной почты")
     public static String randomEmail() {
-        return FAKER.internet().emailAddress() + emailCounter++;
+        return FAKER.internet().emailAddress();
     }
 
     @Step("Транслитерация '{text}' в латиницу")
@@ -81,6 +82,11 @@ public final class TestData {
         String password = FAKER.credentials().password(8, 16, true, false, true);
         lastPassword = password;
         return password;
+    }
+
+    @Step("Создание рандомной суммы")
+    public static Double randomAmount() {
+        return FAKER.random().nextDouble(100.00, 100000.00);
     }
 
     @Step("Подтверждение рандомного пароля")

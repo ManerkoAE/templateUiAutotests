@@ -1,0 +1,25 @@
+{
+  "id": "ecf16e98-56aa-4ae4-b157-e882ea3b2651",
+  "name": "POST /api/bank/login - 401",
+  "priority": 1,
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/api/bank/login",
+    
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 401,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "post-api-bank-login-401.json"
+  },
+  "metadata": {
+    "operationId": "46cdb5e6-3a26-454d-948e-e6785c040c33"
+  }
+}

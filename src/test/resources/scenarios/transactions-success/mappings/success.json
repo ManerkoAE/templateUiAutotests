@@ -1,0 +1,19 @@
+{
+  "id": "b322b537-479e-4759-9d77-d0153358e2db",
+  "name": "GET /api/bank/transactions/{userId} - 200",
+  "priority": 1,
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/api/bank/transactions/[^/]+"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "get-api-bank-transactions-userId-200.json"
+  },
+  "metadata": {
+    "operationId": "a733d2e0-bd5d-4e59-9bbd-7df1d018edc3"
+  }
+}

@@ -1,0 +1,4 @@
+{
+  "status": 200,
+  "message": "TODO: Add your 200 response body for POST /api/bank/loan-applications/{id}/cancel"
+}

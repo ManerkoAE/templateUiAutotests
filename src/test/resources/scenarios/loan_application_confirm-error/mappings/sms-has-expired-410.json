@@ -1,0 +1,24 @@
+{
+  "id": "cf44d35d-410f-49c0-a47d-409da246e4cb",
+  "name": "POST /api/bank/loan-applications/{id}/confirm - 410",
+  "priority": 5,
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/api/bank/loan-applications/[^/]+/confirm",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 410,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "post-api-bank-loan-applications-id-confirm-410.json"
+  },
+  "metadata": {
+    "operationId": "446f3996-1d25-46f4-a3c9-c87dfbbc005e"
+  }
+}

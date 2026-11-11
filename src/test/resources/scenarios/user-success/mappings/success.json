@@ -1,0 +1,19 @@
+{
+  "id": "fb81f905-a69a-4d40-b639-f24e83633749",
+  "name": "GET /api/bank/user/{id} - 200",
+  "priority": 1,
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/api/bank/user/[^/]+"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "get-api-bank-user-id-200.json"
+  },
+  "metadata": {
+    "operationId": "7a1ce7d7-5118-41a9-a510-2c10f7b8f829"
+  }
+}

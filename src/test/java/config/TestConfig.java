@@ -26,6 +26,15 @@ public interface TestConfig extends Config {
     @Key("bank.login")
     String bankLogin();
 
+    @Key("bank.userId")
+    String bankUserId();
+
+    @Key("bank.wrong.login")
+    String bankWrongLogin();
+
+    @Key("bank.wrong.password")
+    String bankWrongPassword();
+
     @Key("bank.password")
     String bankPassword();
 

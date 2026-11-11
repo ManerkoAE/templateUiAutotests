@@ -1,0 +1,91 @@
+[
+  {
+    "id": "commodo ut ut deserunt amet",
+    "userId": "aliqua qui id",
+    "amount": -32775840.02353251,
+    "type": "LOAN_DISBURSEMENT",
+    "date": "1916-03-09T04:41:23.0Z",
+    "description": "consectetur do dolore minim",
+    "referenceId": "sed",
+    "fee": 87069332.83247054,
+    "receiverName": "elit anim ex"
+  },
+  {
+    "id": "mollit tempor sed",
+    "userId": "cillum Excepteur elit aliqua",
+    "amount": 62330834.28815007,
+    "type": "LOAN_DISBURSEMENT",
+    "date": "1954-11-25T22:36:24.0Z",
+    "description": "exercitation",
+    "referenceId": "ad ut do",
+    "fee": 32059321.831911802,
+    "receiverName": "non sed dolore"
+  },
+  {
+    "id": "mollit",
+    "userId": "ea esse dolor minim Lorem",
+    "amount": 59671272.47713506,
+    "type": "TRANSFER_OUT",
+    "date": "1947-11-26T06:40:39.0Z",
+    "description": "ut nostrud deserunt elit proident",
+    "referenceId": "pariatur enim mollit laborum aliquip",
+    "fee": -44305310.58460474,
+    "receiverName": "sed enim tempor"
+  },
+  {
+    "id": "laboris Lorem",
+    "userId": "Lorem",
+    "amount": -16775059.374049306,
+    "type": "LOAN_DISBURSEMENT",
+    "date": "1960-01-18T13:12:15.0Z",
+    "description": "sunt",
+    "referenceId": "ea do id anim exercitation",
+    "fee": -9589378.768578172,
+    "senderName": "esse sunt",
+    "receiverName": "veniam velit"
+  },
+  {
+    "id": "est velit",
+    "userId": "dolor Lorem",
+    "amount": -49021503.88807058,
+    "type": "DEPOSIT",
+    "date": "1935-11-13T17:36:12.0Z",
+    "description": "pariatur ut aliqua",
+    "referenceId": "dolor",
+    "fee": -93856449.37865436,
+    "senderName": "sint nulla eu fugiat"
+  },
+  {
+    "id": "elit aliqua",
+    "userId": "do consectetur sunt reprehenderit dolore",
+    "amount": 77982883.90040398,
+    "type": "DEPOSIT",
+    "date": "1893-06-21T14:59:07.0Z",
+    "description": "sit",
+    "referenceId": "ea sunt",
+    "fee": -19745644.507929683,
+    "senderName": "adipisicing",
+    "receiverName": "eu anim irure sint"
+  },
+  {
+    "id": "dolore tempor ex",
+    "userId": "Excepteur cupidatat",
+    "amount": -60341948.5501945,
+    "type": "DEPOSIT",
+    "date": "1944-05-03T21:06:17.0Z",
+    "description": "laboris magna voluptate ut eu",
+    "referenceId": "ut qui voluptate laboris ut",
+    "fee": -10737398.033961654,
+    "receiverName": "et est aliquip eiusmod id"
+  },
+  {
+    "id": "elit exercitation est",
+    "userId": "irure",
+    "amount": 93210869.98097599,
+    "type": "TRANSFER_OUT",
+    "date": "1969-12-01T09:34:57.0Z",
+    "description": "Lorem",
+    "referenceId": "dolor fugiat sed",
+    "fee": -39239249.84410405
+  }
+]

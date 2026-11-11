@@ -1,0 +1,4 @@
+{
+  "status": 410,
+  "message": "TODO: Add your 410 response body for POST /api/bank/loan-applications/{id}/confirm"
+}

@@ -1,0 +1,4 @@
+{
+  "status": 429,
+  "message": "TODO: Add your 429 response body for POST /api/bank/loan-applications/{id}/otp/resend"
+}
