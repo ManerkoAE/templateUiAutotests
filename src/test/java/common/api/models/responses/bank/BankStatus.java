@@ -15,17 +15,17 @@ public class BankStatus {
         private String status;
 
         /** Подсчет количества пользователей.*/
-        private Number usersCount;
+        private Double usersCount;
 
         /** Подсчет количества транзакций.*/
-        private Number transactionsCount;
+        private Double transactionsCount;
 
         /** Подсчет количества оформленных кредитов.*/
-        private Number loanOffersCount;
+        private Double loanOffersCount;
 
         /** Подсчет количества операций.*/
-        private Number loanApplicationsCount;
+        private Double loanApplicationsCount;
 
         /** Подсчет количества кредитов.*/
-        private Number loansCount;
+        private Double loansCount;
 }

@@ -11,7 +11,7 @@
     "headers": {
       "Content-Type": "application/json"
     },
-    "bodyFileName": "get-api-bank-loan-products-standard-200.json"
+    "bodyFileName": "success.json"
   },
   "metadata": {
     "operationId": "8a40318a-d6f2-455f-8cbf-98dd38793947"

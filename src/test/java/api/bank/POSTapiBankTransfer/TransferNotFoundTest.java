@@ -2,27 +2,32 @@ package api.bank.POSTapiBankTransfer;
 
 import com.github.tomakehurst.wiremock.junit5.WireMockExtension;
 import common.api.steps.BankSteps;
+import common.api.support.BankWireMock;
+import io.qameta.allure.Allure;
+import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
+import static java.net.HttpURLConnection.*;
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
 import static common.utils.TestData.randomAmount;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Feature("Bank")
-public class TransferNotFound {
+@Epic("Bank")
+@Feature("User")
+@Story("Перевод не найден")
+
+@Tag("smoke")
+@Tag("12")
+public class TransferNotFoundTest {
 
     @RegisterExtension
-    static WireMockExtension wm = WireMockExtension.newInstance()
-            .options(wireMockConfig()
-                    .port(3002)
-                    .usingFilesUnderClasspath("scenarios/transfer-not-found")
-                    .globalTemplating(true)
-            )
-            .build();
+    static WireMockExtension wm = BankWireMock.stub("transfer-not-found");
 
     @Test
     @DisplayName("Перевод не найден: {0} → 404")
@@ -31,12 +36,18 @@ public class TransferNotFound {
         String recipient = "testuser456";
         Double amount = randomAmount();
         boolean isAccountNumber = true;
-        Response response = BankSteps.AddNewTransfer(
+        Response response = BankSteps.addNewTransfer(
                 fromUserId,
                 recipient,
                 amount,
                 isAccountNumber
         );
-        assertThat(response.statusCode()).isEqualTo(404);
+        Allure.step("Проверить, что искомый перевод не найден(404)", () -> {
+            assertThat(response.statusCode())
+                    .withFailMessage(
+                            "Перевод не найден. Ожидали %d, а получили %d.",
+                            HTTP_OK, response.statusCode())
+                    .isEqualTo(HTTP_NOT_FOUND);
+        });
     }
 }

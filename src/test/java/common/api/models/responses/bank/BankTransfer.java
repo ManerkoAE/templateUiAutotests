@@ -22,7 +22,7 @@ public class BankTransfer {
     private String userId;
 
     /** Сумма транзакции (отрицательная для расходов) */
-    private Number amount;
+    private Double amount;
 
     /** Тип транзакции */
     private String type;
@@ -37,7 +37,7 @@ public class BankTransfer {
     private String referenceId;
 
     /** Комиссия за транзакцию */
-    private Number fee;
+    private Double fee;
 
     /** Имя отправителя (для входящих переводов). */
     private String senderName;
@@ -46,8 +46,8 @@ public class BankTransfer {
     private String receiverName;
 
     /** Новый баланс отправителя. */
-    private Number senderBalance;
+    private Double senderBalance;
 
     /** Новый баланс получателя. */
-    private Number receiverBalance;
+    private Double receiverBalance;
 }

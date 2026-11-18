@@ -23,9 +23,7 @@ build/
 *.exe
 *.log
 .allure/
-config.properties
 docs/
-
-# Локальные настройки: шаблон для нового окружения — config.properties.example
 config.properties.example
+# Локальные настройки: config.properties не коммитится; шаблон для нового окружения — config.properties.example
 docs/myReadme.md

@@ -61,13 +61,10 @@ public final class TestData {
     public static String toAsciiLatin(String text) {
         if (text == null) return null;
 
-        // 1) кириллица → фонетическая латиница (может содержать диакритику: «Щука» → «Ŝuka», «Пётр» → «Pëtr»)
         String phonetic = CYR_LAT.transliterate(text);
 
-        // 2) NFD раскладывает диакритику в отдельные комбинирующие символы и убираем их
         String decomposed = Normalizer.normalize(phonetic, Normalizer.Form.NFD);
 
-        // 3) страховка: оставляем только латиницу/цифры (на случай апострофов из BGN, если вернётесь к нему)
         return decomposed.replaceAll("\\p{M}", "")
                 .replaceAll("[^a-zA-Z0-9]", "");
     }

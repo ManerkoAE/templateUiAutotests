@@ -27,14 +27,14 @@ public class BankSteps {
                 .post(Endpoint.LOGIN.path());
     }
 
-    @Step("Вызов метода /login/{id}")
+    @Step("Вызов метода /user/{id}")
     public static Response getUserById(String id) {
 
         return given()
                 .spec(ApiSpecs.request())
                 .pathParam("id", id)
                 .when()
-                .get("/user/{id}")
+                .get(Endpoint.USER.path())
                 .then()
                 .extract().response();
     }
@@ -106,18 +106,28 @@ public class BankSteps {
     }
 
     @Step("Создание нового перевода")
-    public static Response AddNewTransfer(String fromUserId, String recipient, Double amount, boolean isAccountNumber) {
+    public static Response addNewTransfer(String fromUserId, String recipient, Double amount, boolean isAccountNumber) {
         BankTransferRequest body = BankTransferRequest.builder()
                 .fromUserId(fromUserId)
                 .recipient(recipient)
                 .amount(amount)
-                .isAccountNumber(true)
+                .isAccountNumber(isAccountNumber)
                 .build();
         return given()
                 .spec(ApiSpecs.request())
                 .body(body)
                 .when()
                 .post(Endpoint.TRANSFER.path())
+                .then()
+                .extract().response();
+    }
+
+    @Step("Вызов метода GET /api/bank/loan-products/standard")
+    public static Response getStandardLoanProduct() {
+        return given()
+                .spec(ApiSpecs.request())
+                .when()
+                .get(Endpoint.STANDARD_LOAN_PRODUCT.path())
                 .then()
                 .extract().response();
     }

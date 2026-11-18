@@ -1,9 +1,12 @@
 package api.bank.POSTapiBankLogin;
 
 import com.github.tomakehurst.wiremock.junit5.WireMockExtension;
+import common.api.support.BankWireMock;
+import io.qameta.allure.Allure;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Story;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.extension.RegisterExtension;
-
-import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
 
 import common.api.steps.BankSteps;
 import config.TestConfig;
@@ -13,19 +16,18 @@ import org.junit.jupiter.api.DisplayName;
 
 import org.junit.jupiter.api.Test;
 
+import static java.net.HttpURLConnection.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
-
-@Feature("Bank")
+@Epic("Bank")
+@Feature("User")
+@Tag("smoke")
+@Tag("9")
+@Story("Пользователь не авторизован")
 class BankLoginNegativeTest {
 
     @RegisterExtension
-    static WireMockExtension wm = WireMockExtension.newInstance()
-            .options(wireMockConfig()
-                    .port(3002)
-                    .usingFilesUnderClasspath("scenarios/login-unautorized")
-            )
-            .build();
+    static WireMockExtension wm = BankWireMock.stub("login-unautorized");
 
     private final BankSteps bankSteps = new BankSteps();
 
@@ -36,8 +38,11 @@ class BankLoginNegativeTest {
         String password = TestConfig.INSTANCE.bankWrongPassword();
 
         Response response = bankSteps.login(username, password);
+        Allure.step("Проверить, авторизован ли пользователь", () -> {
+            assertThat(response.getStatusCode())
+                    .withFailMessage("Пользователь не авторизован. Ожидали %d, а получили %d", HTTP_OK, response.getStatusCode())
+                    .isEqualTo(HTTP_UNAUTHORIZED);
+        });
 
-        assertThat(response.getStatusCode())
-                .isEqualTo(401);
     }
 }

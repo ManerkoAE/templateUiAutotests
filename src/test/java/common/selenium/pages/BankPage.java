@@ -30,7 +30,7 @@ public class BankPage extends BasePage {
     }
 
     @Step("Нажать кнопку \"Быстрый перевод\"")
-    public void clickFastTransferButton() {waitElementIsVisible(driver, FAST_TRANSFER_BUTTON).click();}
+    public void clickFastTransferButton() { waitElementIsVisible(driver, FAST_TRANSFER_BUTTON).click(); }
 
     @Step("Проверить, что пользователь с email {email} залогинен")
     public boolean isUserLoggedIn(String email) {
