@@ -14,14 +14,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
 import static java.net.HttpURLConnection.*;
-import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
 import static common.utils.TestData.randomAmount;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Epic("Bank")
 @Feature("User")
 @Story("Перевод не найден")
-
 @Tag("smoke")
 @Tag("12")
 public class TransferNotFoundTest {
@@ -32,6 +30,7 @@ public class TransferNotFoundTest {
     @Test
     @DisplayName("Перевод не найден: {0} → 404")
     void AddNewTransferSuccess() {
+
         String fromUserId = "testuset123";
         String recipient = "testuser456";
         Double amount = randomAmount();
@@ -40,12 +39,11 @@ public class TransferNotFoundTest {
                 fromUserId,
                 recipient,
                 amount,
-                isAccountNumber
-        );
+                isAccountNumber);
+
         Allure.step("Проверить, что искомый перевод не найден(404)", () -> {
             assertThat(response.statusCode())
-                    .withFailMessage(
-                            "Перевод не найден. Ожидали %d, а получили %d.",
+                    .withFailMessage("Перевод не найден. Ожидали %d, а получили %d.",
                             HTTP_OK, response.statusCode())
                     .isEqualTo(HTTP_NOT_FOUND);
         });

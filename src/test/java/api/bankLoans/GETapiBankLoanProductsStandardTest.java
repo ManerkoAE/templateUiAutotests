@@ -15,7 +15,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Feature("Bank")
 public class GETapiBankLoanProductsStandardTest {
 
-    // Заглушка из общей фабрики: порт 3002 и папка сценариев — одной строкой
     @RegisterExtension
     static WireMockExtension wm = BankWireMock.stub("standard_loan_product-success");
 

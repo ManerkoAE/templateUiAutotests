@@ -16,7 +16,7 @@ public final class ApiSpecs {
 
     private static final RequestSpecification REQUEST = new RequestSpecBuilder()
             .setBaseUri(ApiConfig.INSTANCE.baseUrl())
-            .setBasePath("/api/bank")
+            .setBasePath(ApiConfig.INSTANCE.basePageApi())
             .setContentType(ContentType.JSON)
             .setAccept(ContentType.JSON)
             .setConfig(RestAssuredConfig.config()
@@ -26,8 +26,6 @@ public final class ApiSpecs {
             .addFilter(new AllureRestAssured())
             .build();
 
-    private ApiSpecs() {
-    }
 
     public static RequestSpecification request() {
         return REQUEST;

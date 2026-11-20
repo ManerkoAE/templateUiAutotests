@@ -11,15 +11,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class BankTransferRequest {
 
-    /** ID отправителя.*/
     private String fromUserId;
-
-    /** Получатель (username или номер счета).*/
     private String recipient;
-
-    /** Сумма перевода.*/
     private Double amount;
-
-    /** Флаг: true если recipient - номер счета, false если username.*/
     private Boolean isAccountNumber;
 }

@@ -10,7 +10,6 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import io.restassured.response.Response;
 import org.assertj.core.api.SoftAssertions;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -18,14 +17,12 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 
 import java.util.List;
 
-import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
 import static java.net.HttpURLConnection.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Epic("Bank")
 @Feature("User")
 @Story("Проверка списка транзакций пользователя")
-
 @Tag("smoke")
 @Tag("6")
 public class GetTransactionsUserIdTest {
@@ -49,7 +46,6 @@ public class GetTransactionsUserIdTest {
 
         SoftAssertions.assertSoftly(softly -> {
             Allure.step("Проверить наличие транзакций и их корректное отображение", () -> {
-                ;
                 softly.assertThat(transactions).isNotEmpty();
                 softly.assertThat(transactions).allSatisfy(t -> {
                     softly.assertThat(t.getId()).isNotBlank();

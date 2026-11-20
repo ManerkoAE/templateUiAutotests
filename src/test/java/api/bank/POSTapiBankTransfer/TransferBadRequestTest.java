@@ -1,9 +1,6 @@
 package api.bank.POSTapiBankTransfer;
 
 import com.github.tomakehurst.wiremock.junit5.WireMockExtension;
-import common.api.models.requests.bank.BankRegisterRequest;
-import common.api.models.requests.bank.BankTransferRequest;
-import common.api.models.responses.bank.BankTransfer;
 import common.api.steps.BankSteps;
 import common.api.support.BankWireMock;
 import io.qameta.allure.Allure;
@@ -17,14 +14,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
 import static java.net.HttpURLConnection.*;
-import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
 import static common.utils.TestData.randomAmount;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Epic("Bank")
 @Feature("User")
 @Story("Проверка некорректного перевода")
-
 @Tag("smoke")
 @Tag("11")
 public class TransferBadRequestTest {
@@ -35,6 +30,7 @@ public class TransferBadRequestTest {
     @Test
     @DisplayName("Некорректные данные перевода: {0} → 400")
     void AddNewTransferFail() {
+
         String fromUserId = "testuset123";
         String wrongRecipient = "testuser456";
         Double amount = randomAmount();
@@ -43,18 +39,15 @@ public class TransferBadRequestTest {
                 fromUserId,
                 wrongRecipient,
                 amount,
-                isAccountNumber
-        );
+                isAccountNumber);
 
         Allure.step("Проверить, что сервер вернул 400 Bad Request при некорректном получателе", () -> {
             assertThat(response.statusCode())
-                    .withFailMessage(
-                            "Некорректный статус-код при переводе на получателя '%s'. Ожидали %d, а получили %d. Тело ответа: %s",
+                    .withFailMessage("Некорректный статус-код при переводе на получателя '%s'. Ожидали %d, а получили %d. Тело ответа: %s",
                             wrongRecipient,
                             HTTP_BAD_REQUEST,
                             response.statusCode(),
-                            response.asString()
-                    )
+                            response.asString())
                     .isEqualTo(HTTP_BAD_REQUEST);
         });
     }

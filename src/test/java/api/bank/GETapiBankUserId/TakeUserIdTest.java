@@ -39,7 +39,7 @@ public class TakeUserIdTest {
                 softly.assertThat(userResponse.statusCode())
                         .withFailMessage("Некорректно введенны данные. Ожидали  %d, а получили %d ", userResponse.statusCode(), HTTP_BAD_REQUEST)
                         .isEqualTo(HTTP_OK);
-               softly. assertThat(fromGet)
+                softly.assertThat(fromGet)
                         .usingRecursiveComparison()
                         .ignoringFields("createdAt")
                         .isEqualTo(fromLogin);

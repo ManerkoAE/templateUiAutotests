@@ -22,7 +22,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Epic("Bank")
 @Feature("User")
 @Story("Регистрация нового пользователя")
-
 @Tag("smoke")
 @Tag("2")
 class RegisterNewUserPositiveTest {
@@ -41,8 +40,8 @@ class RegisterNewUserPositiveTest {
         String email = TestData.toAsciiLatin(TestData.duplicateRandomFirstName()).toLowerCase(Locale.ROOT)
                 + "." + TestData.toAsciiLatin(TestData.duplicateRandomLastName()).toLowerCase(Locale.ROOT)
                 + "@mail.ru";
-
         Response response = BankSteps.registerNewUser(username, password, firstName, lastName, email);
+
         Allure.step("Проверить регистрацию нового пользователя", () -> {
             assertThat(response.getStatusCode())
                     .withFailMessage("Введены некорректные данные. Ожидали %d, а получили %d", response.getStatusCode(), HTTP_BAD_REQUEST)

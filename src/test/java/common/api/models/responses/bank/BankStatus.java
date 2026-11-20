@@ -11,21 +11,10 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BankStatus {
 
-        /** Статус системы банка.*/
-        private String status;
-
-        /** Подсчет количества пользователей.*/
-        private Double usersCount;
-
-        /** Подсчет количества транзакций.*/
-        private Double transactionsCount;
-
-        /** Подсчет количества оформленных кредитов.*/
-        private Double loanOffersCount;
-
-        /** Подсчет количества операций.*/
-        private Double loanApplicationsCount;
-
-        /** Подсчет количества кредитов.*/
-        private Double loansCount;
+    private String status;
+    private Double usersCount;
+    private Double transactionsCount;
+    private Double loanOffersCount;
+    private Double loanApplicationsCount;
+    private Double loansCount;
 }

@@ -1,6 +1,7 @@
 package common.core;
 
 import config.TestConfig;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -9,14 +10,11 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.time.Duration;
 
-/**
- * Создание {@link WebDriver}.
- */
 public final class DriverFactory {
 
     private DriverFactory() {
     }
-
+    private static final Dimension WINDOW_SIZE = new Dimension(1920, 1080);
     public static WebDriver createDriver() {
         Browser browser = Browser.from(TestConfig.INSTANCE.browser());
         boolean headless = TestConfig.INSTANCE.headless();
@@ -25,11 +23,11 @@ public final class DriverFactory {
             case CHROME -> new ChromeDriver(chromeOptions(headless));
             case FIREFOX -> new FirefoxDriver(firefoxOptions(headless));
         };
+        driver.manage().window().setSize(WINDOW_SIZE);
+        Duration timeout = Duration.ofSeconds(TestConfig.INSTANCE.pageLoadTimeout());
+        driver.manage().timeouts().pageLoadTimeout(timeout);
 
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(TestConfig.INSTANCE.pageLoadTimeout()));
-        if (!headless) {
-            driver.manage().window().maximize();
-        }
+
         return driver;
     }
 

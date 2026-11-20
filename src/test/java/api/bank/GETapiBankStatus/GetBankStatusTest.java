@@ -20,7 +20,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Epic("Bank")
 @Feature("Status")
 @Story("Проверка статуса работы системы банка")
-
 @Tag("smoke")
 @Tag("1")
 public class GetBankStatusTest extends ApiBaseTest {
@@ -35,8 +34,7 @@ public class GetBankStatusTest extends ApiBaseTest {
         Allure.step("Проверить статус код ответа", () -> {
             assertThat(bankResponse.statusCode())
                     .withFailMessage("Система недоступна. Ожидали %d, а получили %d", bankResponse.getStatusCode(), HTTP_BAD_REQUEST)
-                    .isEqualTo(HTTP_OK)
-            ;
+                    .isEqualTo(HTTP_OK);
         });
     }
 }

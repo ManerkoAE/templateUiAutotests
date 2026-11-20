@@ -17,17 +17,15 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
 import static java.net.HttpURLConnection.*;
-import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Epic("Bank")
 @Feature("User")
 @Story("Проверка наличия пользователя по ID (Пользователь не найден - 404)")
-
 @Tag("smoke")
 @Tag("10")
-
 public class TakeUserId404Test {
+
     @RegisterExtension
     static WireMockExtension wm = BankWireMock.stub("user-not-found");
 

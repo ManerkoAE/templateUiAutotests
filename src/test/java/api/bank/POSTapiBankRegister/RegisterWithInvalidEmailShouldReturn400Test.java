@@ -5,6 +5,8 @@ import common.api.steps.BankSteps;
 import io.qameta.allure.*;
 import io.restassured.response.Response;
 import jdk.jfr.Name;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -13,10 +15,11 @@ import org.junit.jupiter.params.provider.EnumSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Getter
+@RequiredArgsConstructor
 @Epic("Bank")
 @Feature("User")
 @Story("Параметризированный тест проверки ввода невалидной почты при регистрации")
-
 @Tag("smoke")
 @Tag("13")
 @Disabled("DEF-1234: API принимает некорректный email (ожидался 400 INVALID_EMAIL). Баг заведён 2026-11-01")
@@ -30,6 +33,7 @@ class RegisterWithInvalidEmailShouldReturn400Test {
     @DisplayName("Ввод невалидной почты при регистрации")
     @EnumSource(InvalidEmailApiError.class)
     void registerWithInvalidEmailShouldReturn400(InvalidEmailApiError error) {
+
         Response response = BankSteps.registerWithWrongEmail(emailFor(error));
 
         Allure.addAttachment(
@@ -39,11 +43,11 @@ class RegisterWithInvalidEmailShouldReturn400Test {
 
         assertThat(response.statusCode())
                 .as("HTTP-код для %s", error)
-                .isEqualTo(error.httpStatus());
+                .isEqualTo(error.getStatus());
 
         assertThat(response.jsonPath().getString("error"))
                 .as("Код ошибки для %s (тело: %s)", error, response.asPrettyString())
-                .isEqualTo(error.error());
+                .isEqualTo(error.getError());
     }
 
     private static String emailFor(InvalidEmailApiError error) {

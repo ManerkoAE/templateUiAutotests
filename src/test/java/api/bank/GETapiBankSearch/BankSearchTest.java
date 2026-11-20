@@ -19,12 +19,10 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static java.net.HttpURLConnection.*;
-import static org.assertj.core.api.Assertions.assertThat;
 
 @Epic("Bank")
 @Feature("Search")
 @Story("Проверка работы поиска клиентов банка")
-
 @Tag("smoke")
 @Tag("5")
 public class BankSearchTest {
@@ -35,6 +33,7 @@ public class BankSearchTest {
     @Test
     @DisplayName("GET /api/bank/search — возвращает список пользователей")
     void search() {
+
         Response response = BankSteps.getSearchResults("testuser");
 
         SoftAssertions.assertSoftly(softly -> {

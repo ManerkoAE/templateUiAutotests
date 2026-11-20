@@ -23,7 +23,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Epic("Bank")
 @Feature("User")
 @Story("Проверка ввода некорректных(существующих) данных при регистрации")
-
 @Tag("smoke")
 @Tag("8")
 public class RegisterWithWrongCredentialsTest {
@@ -42,7 +41,6 @@ public class RegisterWithWrongCredentialsTest {
         String email = TestData.toAsciiLatin(TestData.duplicateRandomFirstName()).toLowerCase(Locale.ROOT)
                 + "." + TestData.toAsciiLatin(TestData.duplicateRandomLastName()).toLowerCase(Locale.ROOT)
                 + "@mail.ru";
-
         Response response = BankSteps.registerNewUser(username, password, firstName, lastName, email);
 
         Allure.step("Проверить валидность ввода данных нового пользователя", () -> {

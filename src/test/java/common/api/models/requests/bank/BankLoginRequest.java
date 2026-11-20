@@ -12,13 +12,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class BankLoginRequest {
 
-    /**
-     * Имя пользователя. В JSON поле {@code username}.
-     */
     private String username;
-
-    /**
-     * Пароль. В JSON поле {@code password}.
-     */
     private String password;
 }
