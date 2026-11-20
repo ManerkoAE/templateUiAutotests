@@ -1,0 +1,35 @@
+{
+  "id": "535f56a5-dfe1-4d96-be84-ba9268ff386d",
+  "name": "POST /api/bank/transfer - 404",
+  "priority": 5,
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/api/bank/transfer",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.fromUserId"
+      },
+      {
+        "matchesJsonPath": "$.recipient"
+      },
+      {
+        "matchesJsonPath": "$.amount"
+      }
+    ],
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 404,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "post-api-bank-transfer-404.json"
+  },
+  "metadata": {
+    "operationId": "036e4e41-54df-43ed-a506-600bfaad85cd"
+  }
+}

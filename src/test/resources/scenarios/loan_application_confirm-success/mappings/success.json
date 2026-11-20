@@ -1,0 +1,24 @@
+{
+  "id": "63da400f-9b04-41ba-ab3c-2c62f87bb7db",
+  "name": "POST /api/bank/loan-applications/{id}/confirm - 200",
+  "priority": 1,
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/api/bank/loan-applications/[^/]+/confirm",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "post-api-bank-loan-applications-id-confirm-200.json"
+  },
+  "metadata": {
+    "operationId": "d858fdd8-67db-4619-aaa6-c74f31b58b03"
+  }
+}

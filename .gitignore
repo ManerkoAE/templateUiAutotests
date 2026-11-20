@@ -22,3 +22,11 @@ build/
 .DS_Store
 *.exe
 *.log
+.allure/
+docs/
+config.properties.example
+# Локальные настройки: config.properties не коммитится; шаблон для нового окружения — config.properties.example
+docs/myReadme.md
+docs/help-with-elements-appearence.md
+docs/tasks-need-to-do.md
+docs/questions.md

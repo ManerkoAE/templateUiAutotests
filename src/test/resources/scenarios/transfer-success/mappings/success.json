@@ -1,0 +1,35 @@
+{
+  "id": "f3772ca9-9cc0-4067-a029-e6922c08db18",
+  "name": "POST /api/bank/transfer - 200",
+  "priority": 1,
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/api/bank/transfer",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.fromUserId"
+      },
+      {
+        "matchesJsonPath": "$.recipient"
+      },
+      {
+        "matchesJsonPath": "$.amount"
+      }
+    ],
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "post-api-bank-transfer-200.json"
+  },
+  "metadata": {
+    "operationId": "38e9f84d-a834-4031-be6d-34ff18de562e"
+  }
+}

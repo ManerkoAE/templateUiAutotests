@@ -1,0 +1,19 @@
+{
+  "id": "0a270c1f-56c4-4673-a1ff-b97059bf4a95",
+  "name": "GET /api/bank/users/{userId}/loan-offers - 200",
+  "priority": 1,
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/api/bank/users/[^/]+/loan-offers"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "get-api-bank-users-userId-loan-offers-200.json"
+  },
+  "metadata": {
+    "operationId": "a3ad4060-bfbc-4839-be3b-c66f512df968"
+  }
+}

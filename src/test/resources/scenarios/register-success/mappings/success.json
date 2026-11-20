@@ -1,0 +1,42 @@
+{
+  "id": "a4cb6f98-d564-462b-b92e-adb5918ba1e5",
+  "name": "POST /api/bank/register - 200",
+  "priority": 1,
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/api/bank/register",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.username"
+      },
+      {
+        "matchesJsonPath": "$.password"
+      },
+      {
+        "matchesJsonPath": "$.firstName"
+      },
+      {
+        "matchesJsonPath": "$.lastName"
+      },
+      {
+        "matchesJsonPath": "$.email"
+      }
+    ],
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "post-api-bank-register-200.json",
+    "transformers": ["response-template"]
+  },
+  "metadata": {
+    "operationId": "74a27540-9d1e-4a6b-a033-a50478a58514"
+  }
+}

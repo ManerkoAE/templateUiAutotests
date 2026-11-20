@@ -1,0 +1,24 @@
+{
+  "id": "3408cf0a-ed56-43f3-8425-5c4811a38b99",
+  "name": "POST /api/bank/loan-quotes - 200",
+  "priority": 1,
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/api/bank/loan-quotes",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "post-api-bank-loan-quotes-200.json"
+  },
+  "metadata": {
+    "operationId": "a0a9b351-618d-4e3d-95f1-61f0c17dfebe"
+  }
+}
