@@ -24,12 +24,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Feature("User")
 @Story("Проверка списка транзакций пользователя")
 @Tag("smoke")
-@Tag("6")
 public class GetTransactionsUserIdTest {
 
     @RegisterExtension
     static WireMockExtension wm = BankWireMock.stub("transactions-success");
 
+    @Tag("6")
     @Test
     @DisplayName("GET /api/bank/transactions/{userId} — возвращает список транзакций пользователя")
     void getTransactionsByUserId() {

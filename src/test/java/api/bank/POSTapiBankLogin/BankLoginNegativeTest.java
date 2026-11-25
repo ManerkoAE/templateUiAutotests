@@ -20,7 +20,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Epic("Bank")
 @Feature("User")
 @Tag("smoke")
-@Tag("9")
 @Story("Пользователь не авторизован")
 class BankLoginNegativeTest {
 
@@ -29,6 +28,7 @@ class BankLoginNegativeTest {
 
     private final BankSteps bankSteps = new BankSteps();
 
+    @Tag("9")
     @Test
     @DisplayName("Логин в банк возвращает 401")
     void loginReturns401() {

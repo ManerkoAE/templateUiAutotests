@@ -21,12 +21,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Feature("User")
 @Story("Перевод не найден")
 @Tag("smoke")
-@Tag("12")
 public class TransferNotFoundTest {
 
     @RegisterExtension
     static WireMockExtension wm = BankWireMock.stub("transfer-not-found");
 
+    @Tag("12")
     @Test
     @DisplayName("Перевод не найден: {0} → 404")
     void AddNewTransferSuccess() {

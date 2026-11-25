@@ -24,12 +24,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Feature("User")
 @Story("Проверка ввода некорректных(существующих) данных при регистрации")
 @Tag("smoke")
-@Tag("8")
 public class RegisterWithWrongCredentialsTest {
 
     @RegisterExtension
     static WireMockExtension wm = BankWireMock.stub("register-bad-request");
 
+    @Tag("8")
     @Test
     @DisplayName("Негативный: {0} → 400/401 -> Имя пользователя занято")
     void registerWithInValidCredentials() {

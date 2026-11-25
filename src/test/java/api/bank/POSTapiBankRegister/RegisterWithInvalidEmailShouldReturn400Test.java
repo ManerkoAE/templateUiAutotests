@@ -21,14 +21,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Feature("User")
 @Story("Параметризированный тест проверки ввода невалидной почты при регистрации")
 @Tag("smoke")
-@Tag("13")
 @Disabled("DEF-1234: API принимает некорректный email (ожидался 400 INVALID_EMAIL). Баг заведён 2026-11-01")
 @Link("https://jira.example.com/browse/DEF-1234")
 @Name("name = DEF-1234")
 @Tag("bug")
 class RegisterWithInvalidEmailShouldReturn400Test {
 
-
+    @Tag("13")
     @ParameterizedTest(name = "Негативный: {0} → 400")
     @DisplayName("Ввод невалидной почты при регистрации")
     @EnumSource(InvalidEmailApiError.class)

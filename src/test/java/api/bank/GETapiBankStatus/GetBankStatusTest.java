@@ -21,12 +21,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Feature("Status")
 @Story("Проверка статуса работы системы банка")
 @Tag("smoke")
-@Tag("1")
 public class GetBankStatusTest extends ApiBaseTest {
 
     @RegisterExtension
     static WireMockExtension wm = BankWireMock.stub("status-success");
 
+    @Tag("1")
     @Test
     @DisplayName("GET /api/bank/status Получить статус системы банка")
     void getBankStatus() {

@@ -23,12 +23,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Feature("User")
 @Story("Проверка наличия пользователя по ID (Пользователь не найден - 404)")
 @Tag("smoke")
-@Tag("10")
 public class TakeUserId404Test {
 
     @RegisterExtension
     static WireMockExtension wm = BankWireMock.stub("user-not-found");
 
+    @Tag("10")
     @Test
     @DisplayName("GET /user/{id} возвращает 404 для несуществующего id")
     void getUserByIdReturnsSameUserAsLogin() {

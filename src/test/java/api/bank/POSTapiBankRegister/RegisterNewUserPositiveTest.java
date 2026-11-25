@@ -23,12 +23,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Feature("User")
 @Story("Регистрация нового пользователя")
 @Tag("smoke")
-@Tag("2")
 class RegisterNewUserPositiveTest {
 
     @RegisterExtension
     static WireMockExtension wm = BankWireMock.stub("register-success");
 
+    @Tag("2")
     @Test
     @DisplayName("Регистрация нового пользователя → 200/201")
     void registerWithValidCredentials() {

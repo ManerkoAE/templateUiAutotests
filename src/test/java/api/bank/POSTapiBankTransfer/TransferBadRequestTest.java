@@ -21,12 +21,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Feature("User")
 @Story("Проверка некорректного перевода")
 @Tag("smoke")
-@Tag("11")
 public class TransferBadRequestTest {
 
     @RegisterExtension
     static WireMockExtension wm = BankWireMock.stub("transfer-bad-request");
 
+    @Tag("11")
     @Test
     @DisplayName("Некорректные данные перевода: {0} → 400")
     void AddNewTransferFail() {

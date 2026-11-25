@@ -19,13 +19,13 @@ import static java.net.HttpURLConnection.*;
 @Epic("Bank")
 @Feature("User")
 @Tag("smoke")
-@Tag("4")
 @Story("Проверка наличия пользователя по ID")
 public class TakeUserIdTest {
 
     @RegisterExtension
     static WireMockExtension wm = BankWireMock.stub("user-success");
 
+    @Tag("4")
     @Test
     @DisplayName("GET /user/{id} возвращает того же пользователя, что и login")
     void getUserByIdReturnsSameUserAsLogin() {

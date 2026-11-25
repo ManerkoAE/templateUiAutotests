@@ -24,12 +24,12 @@ import static java.net.HttpURLConnection.*;
 @Feature("Search")
 @Story("Проверка работы поиска клиентов банка")
 @Tag("smoke")
-@Tag("5")
 public class BankSearchTest {
 
     @RegisterExtension
     static WireMockExtension wm = BankWireMock.stub("search-success");
 
+    @Tag("5")
     @Test
     @DisplayName("GET /api/bank/search — возвращает список пользователей")
     void search() {

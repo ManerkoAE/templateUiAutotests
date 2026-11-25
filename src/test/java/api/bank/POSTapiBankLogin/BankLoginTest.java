@@ -21,7 +21,6 @@ import static java.net.HttpURLConnection.*;
 @Epic("Bank")
 @Feature("User")
 @Tag("smoke")
-@Tag("3")
 @Story("Проверка авторизации пользователя и корректности отображенния его данных")
 class BankLoginTest {
 
@@ -30,6 +29,7 @@ class BankLoginTest {
 
     private final BankSteps bankSteps = new BankSteps();
 
+    @Tag("3")
     @Test
     @DisplayName("Логин в банк возвращает 200 OK")
     void loginReturns200() {
