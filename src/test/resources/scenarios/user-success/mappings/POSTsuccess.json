@@ -1,0 +1,28 @@
+{
+  "id": "bea70ca0-96d9-446a-9669-973122b5bb48",
+  "name": "POST /api/bank/login - 200",
+  "priority": 5,
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/api/bank/login",
+     "bodyPatterns": [
+    { "matchesJsonPath": "$.username", "equalTo": "testuser" },
+    { "matchesJsonPath": "$.password", "equalTo": "password" }
+  ],
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "post-api-bank-login-200.json"
+  },
+  "metadata": {
+    "operationId": "13fb69dc-79bc-4d3c-8a6c-33335c8c4a60"
+  }
+}

@@ -1,0 +1,4 @@
+{
+  "status": 204,
+  "message": "TODO: Add your 204 response body for DELETE /api/bank/users/{userId}/loan-offers/{offerId}"
+}

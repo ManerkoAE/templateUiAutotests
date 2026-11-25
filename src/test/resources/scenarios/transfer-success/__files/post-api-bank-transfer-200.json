@@ -1,0 +1,14 @@
+{
+  "transaction": {
+    "id": "mollit",
+    "userId": "est incididunt sed",
+    "amount": 17859588.796272874,
+    "type": "DEPOSIT",
+    "date": "1916-01-12T04:23:38.0Z",
+    "description": "aliquip mollit",
+    "referenceId": "est proident dolore",
+    "fee": 50050115.53876102,
+    "senderName": "adipisicing labore occaecat consectetur",
+    "receiverName": "nostrud anim esse"
+  }
+}

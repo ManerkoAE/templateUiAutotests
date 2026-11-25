@@ -1,0 +1,9 @@
+{
+  "id": "{{randomValue type='UUID'}}",
+  "username": "{{jsonPath request.body '$.username'}}",
+  "firstName": "{{jsonPath request.body '$.firstName'}}",
+  "lastName": "{{jsonPath request.body '$.lastName'}}",
+  "email": "{{jsonPath request.body '$.email'}}",
+  "balance": 1000000.0,
+  "accountNumber": "{{randomValue length=12 type='NUMERIC'}}"
+}

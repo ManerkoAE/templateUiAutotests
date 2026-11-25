@@ -1,0 +1,29 @@
+{
+  "id": "cc16bb8c-7355-4497-8cc8-dfbdaa7b5e99",
+  "name": "POST /api/bank/loan-applications/{id}/otp/resend - 200",
+  "priority": 1,
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/api/bank/loan-applications/[^/]+/otp/resend",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.userId"
+      }
+    ],
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "post-api-bank-loan-applications-id-otp-resend-200.json"
+  },
+  "metadata": {
+    "operationId": "ae1a808a-75cd-413a-9be1-14220f74e0b3"
+  }
+}

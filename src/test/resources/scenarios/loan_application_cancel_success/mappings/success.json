@@ -1,0 +1,29 @@
+{
+  "id": "a0a083e9-68f5-4116-a0b7-d53e1ed66491",
+  "name": "POST /api/bank/loan-applications/{id}/cancel - 200",
+  "priority": 1,
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/api/bank/loan-applications/[^/]+/cancel",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.userId"
+      }
+    ],
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "post-api-bank-loan-applications-id-cancel-200.json"
+  },
+  "metadata": {
+    "operationId": "7741e088-047e-4571-8206-b32aea33f30d"
+  }
+}

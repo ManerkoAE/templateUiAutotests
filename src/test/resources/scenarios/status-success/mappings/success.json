@@ -1,0 +1,19 @@
+{
+  "id": "797da837-afcf-4e22-942c-df1987c14707",
+  "name": "GET /api/bank/status - 200",
+  "priority": 1,
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/api/bank/status"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "get-api-bank-status-200.json"
+  },
+  "metadata": {
+    "operationId": "15e1f1e8-ce46-4ba6-b6d9-6df8f6ddd671"
+  }
+}

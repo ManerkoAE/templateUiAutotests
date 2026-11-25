@@ -1,0 +1,24 @@
+{
+  "id": "5af50ff2-bd75-4b44-9e45-3507b5274109",
+  "name": "GET /api/bank/loan-applications/{id} - 200",
+  "priority": 1,
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/api/bank/loan-applications/[^/]+",
+    "queryParameters": {
+      "userId": {
+        "matches": ".+"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "get-api-bank-loan-applications-id-200.json"
+  },
+  "metadata": {
+    "operationId": "d2f65016-2f80-42bd-9fa2-4a3a0ff0a124"
+  }
+}

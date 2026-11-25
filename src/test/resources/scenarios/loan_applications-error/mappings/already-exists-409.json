@@ -1,0 +1,24 @@
+{
+  "id": "8e6d675a-6db9-449f-a6a6-e0da7cc72575",
+  "name": "POST /api/bank/loan-applications - 409",
+  "priority": 5,
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/api/bank/loan-applications",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 409,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "post-api-bank-loan-applications-409.json"
+  },
+  "metadata": {
+    "operationId": "02ce784d-0de3-4c83-8c73-ff3065ce8926"
+  }
+}
